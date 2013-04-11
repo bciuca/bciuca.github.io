@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
  
- <title>devely</title>
+ <title>dev notes</title>
  <link href="http://bciuca.github.io/" rel="self"/>
  <link href="http://bciuca.github.io"/>
- <updated>2013-04-11T14:32:15-07:00</updated>
+ <updated>2013-04-11T14:40:37-07:00</updated>
  <id>http://bciuca.github.io</id>
  <author>
    <name>Bogdan Ciuca</name>
