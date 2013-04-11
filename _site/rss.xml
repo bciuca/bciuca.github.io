@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+        <title>Devely</title>
+        <description>Devely - B Ciuca</description>
+        <link>http://bciuca.github.io</link>
+        <link>http://bciuca.github.io</link>
+        <lastBuildDate>2013-04-11T10:48:11-07:00</lastBuildDate>
+        <pubDate>2013-04-11T10:48:11-07:00</pubDate>
+        <ttl>1800</ttl>
+
+
+        <item>
+                <title>Using Multiple GitHub Accounts</title>
+                <description>&lt;p&gt;I have two GitHub accounts, one for personal projects and another for my current job. The problem I was running into was trying to keep my work life and personal hacks separate on my laptop. All it really takes is some configuration files in ssh and your git repo. The solution to this came from a simple search and came up with &lt;a href='http://net.tutsplus.com/tutorials/tools-and-tips/how-to-work-with-github-and-multiple-accounts/'&gt;Jeffery Way&amp;#8217;s blog post&lt;/a&gt;. If you need more details than I have here, be sure to check out Jeffery&amp;#8217;s blog.&lt;/p&gt;
+
+&lt;p&gt;The following steps assumes that you already have an existing key you use with one of your github accounts. For the purpose of this writeup, the default &lt;code&gt;id_rsa&lt;/code&gt; key is associated with my personal GitHub account.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;java
+Host github.com 
+   Hostname github.com 
+   User git 
+   IdentityFile ~/.ssh/id_rsa
+Host github-mycompany
+   Hostname github.com
+   User git
+   IdentityFile ~/.ssh/id_rsa_mycompany
+&lt;/code&gt;&lt;/p&gt;</description>
+                <link>http://bciuca.github.io/dev/2013/04/10/using-multiple-github-accounts</link>
+                <guid>http://bciuca.github.io/dev/2013/04/10/using-multiple-github-accounts</guid>
+                <pubDate>2013-04-10T00:00:00-07:00</pubDate>
+        </item>
+
+        <item>
+                <title>Hello Mars</title>
+                <description>&lt;p&gt;Hello Mars! This is a test page. Yay.&lt;/p&gt;</description>
+                <link>http://bciuca.github.io/test/2013/04/10/hello-mars</link>
+                <guid>http://bciuca.github.io/test/2013/04/10/hello-mars</guid>
+                <pubDate>2013-04-10T00:00:00-07:00</pubDate>
+        </item>
+
+
+</channel>
+</rss>

@@ -1,0 +1,12 @@
+
+http://bciuca.github.io/archive.html
+http://bciuca.github.io/atom.xml
+http://bciuca.github.io/categories.html
+http://bciuca.github.io/index.html
+http://bciuca.github.io/pages.html
+http://bciuca.github.io/rss.xml
+http://bciuca.github.io/sitemap.txt
+http://bciuca.github.io/tags.html
+
+http://bciuca.github.io/dev/2013/04/10/using-multiple-github-accounts
+http://bciuca.github.io/test/2013/04/10/hello-mars
