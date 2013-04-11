@@ -4,7 +4,7 @@
  <title>Devely</title>
  <link href="http://bciuca.github.io/" rel="self"/>
  <link href="http://bciuca.github.io"/>
- <updated>2013-04-11T10:48:11-07:00</updated>
+ <updated>2013-04-11T11:19:57-07:00</updated>
  <id>http://bciuca.github.io</id>
  <author>
    <name>B Ciuca</name>
@@ -17,20 +17,74 @@
    <link href="http://bciuca.github.io/dev/2013/04/10/using-multiple-github-accounts"/>
    <updated>2013-04-10T00:00:00-07:00</updated>
    <id>http://bciuca.github.io/dev/2013/04/10/using-multiple-github-accounts</id>
-   <content type="html">&lt;p&gt;I have two GitHub accounts, one for personal projects and another for my current job. The problem I was running into was trying to keep my work life and personal hacks separate on my laptop. All it really takes is some configuration files in ssh and your git repo. The solution to this came from a simple search and came up with &lt;a href='http://net.tutsplus.com/tutorials/tools-and-tips/how-to-work-with-github-and-multiple-accounts/'&gt;Jeffery Way&amp;#8217;s blog post&lt;/a&gt;. If you need more details than I have here, be sure to check out Jeffery&amp;#8217;s blog.&lt;/p&gt;
+   <content type="html">&lt;h3 id='using_multiple_github_accounts_is_possible_with_some_ssh_and_git_configuration'&gt;Using multiple GitHub accounts is possible with some ssh and git configuration.&lt;/h3&gt;
 
-&lt;p&gt;The following steps assumes that you already have an existing key you use with one of your github accounts. For the purpose of this writeup, the default &lt;code&gt;id_rsa&lt;/code&gt; key is associated with my personal GitHub account.&lt;/p&gt;
+&lt;p&gt;I have two GitHub accounts, one for personal projects and another for my current job. The problem I was running into was trying to keep my work and personal repos separate on my machine. Luckily, git and ssh are configurable enough to get this sorted out. Through some simple googling, I found &lt;a href='http://net.tutsplus.com/tutorials/tools-and-tips/how-to-work-with-github-and-multiple-accounts/'&gt;Jeffery Way&amp;#8217;s blog post&lt;/a&gt;. The steps I outlined below is what I did to get this setup on my Mac. More details can be found on Jeffery&amp;#8217;s blog post.&lt;/p&gt;
 
-&lt;p&gt;&lt;code&gt;java
-Host github.com 
-   Hostname github.com 
-   User git 
-   IdentityFile ~/.ssh/id_rsa
-Host github-mycompany
-   Hostname github.com
-   User git
-   IdentityFile ~/.ssh/id_rsa_mycompany
-&lt;/code&gt;&lt;/p&gt;</content>
+&lt;p&gt;The following steps assumes that you already have an existing key you use with one of your github accounts. For the purpose of this writeup, the default &lt;code&gt;id_rsa&lt;/code&gt; key is associated with your personal GitHub account.&lt;/p&gt;
+
+&lt;h3 id='creating_and_adding_ssh_keys'&gt;Creating and adding ssh keys&lt;/h3&gt;
+
+&lt;p&gt;A ssh key will be needed to use with the work GitHub account. In your &lt;code&gt;~/.ssh&lt;/code&gt; directory, run the following ssh command: &lt;code&gt;ssh-keygen -t rsa -C &amp;quot;me@mycompany.com&amp;quot;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Rename the key to something else i.e.: &lt;code&gt;id_rsa_mycompany&lt;/code&gt; and &lt;code&gt;id_rsa_mycompany.pub&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Add the key to ssh: &lt;code&gt;ssh-add ~/.ssh/id_rsa_mycompany&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id='setting_up_github_with_your_new_ssh_key'&gt;Setting up GitHub with your new ssh key&lt;/h3&gt;
+
+&lt;p&gt;Now add the new public key to the work GitHub account (this will be under your GitHub account settings). Open the &lt;code&gt;id_rsa_mycompany.pub&lt;/code&gt; public key file in a text editor and copy the text. In Mac&amp;#8217;s terminal, you can use the following command to copy the content of the file to your clipboard: &lt;code&gt;cat ~/.ssh/id_rsa_mycompany.pub | pbcopy&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id='configuring_ssh'&gt;Configuring ssh&lt;/h3&gt;
+
+&lt;p&gt;Configure ssh host names to use for work and personal. The config file is in &lt;code&gt;~/.ssh/config&lt;/code&gt; or you can create one if needed: &lt;code&gt;touch ~/.ssh/config&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The first host is the personal account and the second entry is for the work account. You can name the &lt;code&gt;Hostname&lt;/code&gt; whatever you like. &lt;pre&gt;
+    &lt;code&gt;
+        Host github.com 
+           Hostname github.com 
+           User git 
+           IdentityFile ~/.ssh/id_rsa
+        Host github-mycompany
+           Hostname github.com
+           User git
+           IdentityFile ~/.ssh/id_rsa_mycompany
+    &lt;/code&gt;
+&lt;/pre&gt;&lt;/p&gt;
+
+&lt;h3 id='configuring_git_repo'&gt;Configuring git repo&lt;/h3&gt;
+
+&lt;p&gt;Configure your git repo settings to use the configured ssh hostnames. The config file can be found in the &lt;code&gt;.git&lt;/code&gt; directory of your git repo. &lt;pre&gt;
+    &lt;code&gt;
+        [core]
+           repositoryformatversion = 0
+           filemode = true
+           bare = false
+           logallrefupdates = true
+           ignorecase = true
+        [remote &quot;origin&quot;]
+           fetch = +refs/heads/*:refs/remotes/origin/*
+           url = git@github-mycompany:OrgName/corporate-stuff.git
+        [branch &quot;xdev&quot;]
+           remote = origin
+           merge = refs/heads/xdev
+        [user]
+           email = me@mycompany.com
+    &lt;/code&gt;
+&lt;/pre&gt;&lt;/p&gt;
+
+&lt;h3 id='testing_it_out'&gt;Testing it out&lt;/h3&gt;
+
+&lt;p&gt;To test that the keys were added ok, you can run the following ssh commands.&lt;/p&gt;
+&lt;pre&gt;
+    &lt;code&gt;
+        ssh -T git@github.com
+        Hi bciuca! You've successfully authenticated, but GitHub does not provide shell access.
+
+        ssh -T git@github-mycompany
+        Hi bciuca-mycompany! You've successfully authenticated, but GitHub does not provide shell access.
+    &lt;/code&gt;
+&lt;/pre&gt;</content>
  </entry>
  
  <entry>
