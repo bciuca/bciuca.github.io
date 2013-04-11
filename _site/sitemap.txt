@@ -1,12 +1,12 @@
 
-http://bciuca.github.io/archive.html
-http://bciuca.github.io/atom.xml
-http://bciuca.github.io/categories.html
-http://bciuca.github.io/index.html
-http://bciuca.github.io/pages.html
-http://bciuca.github.io/rss.xml
-http://bciuca.github.io/sitemap.txt
-http://bciuca.github.io/tags.html
+http://bciuca.com/archive.html
+http://bciuca.com/atom.xml
+http://bciuca.com/categories.html
+http://bciuca.com/index.html
+http://bciuca.com/pages.html
+http://bciuca.com/rss.xml
+http://bciuca.com/sitemap.txt
+http://bciuca.com/tags.html
 
-http://bciuca.github.io/dev/2013/04/10/using-multiple-github-accounts
-http://bciuca.github.io/test/2013/04/10/hello-mars
+http://bciuca.com/dev/2013/04/10/using-multiple-github-accounts
+http://bciuca.com/test/2013/04/10/hello-mars

@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
  
- <title>dev notes</title>
- <link href="http://bciuca.github.io/" rel="self"/>
- <link href="http://bciuca.github.io"/>
- <updated>2013-04-11T14:40:37-07:00</updated>
- <id>http://bciuca.github.io</id>
+ <title>devbog</title>
+ <link href="http://bciuca.com/" rel="self"/>
+ <link href="http://bciuca.com"/>
+ <updated>2013-04-11T16:40:30-07:00</updated>
+ <id>http://bciuca.com</id>
  <author>
    <name>Bogdan Ciuca</name>
-   <email>haha@lol.com</email>
+   <email>b@bciuca.com</email>
  </author>
 
  
  <entry>
    <title>Using Multiple GitHub Accounts</title>
-   <link href="http://bciuca.github.io/dev/2013/04/10/using-multiple-github-accounts"/>
+   <link href="http://bciuca.com/dev/2013/04/10/using-multiple-github-accounts"/>
    <updated>2013-04-10T00:00:00-07:00</updated>
-   <id>http://bciuca.github.io/dev/2013/04/10/using-multiple-github-accounts</id>
+   <id>http://bciuca.com/dev/2013/04/10/using-multiple-github-accounts</id>
    <content type="html">&lt;h4 id='why_would_you_need_more_than_one_github_account'&gt;Why would you need more than one GitHub account?&lt;/h4&gt;
 
 &lt;p&gt;Ideally, having a single GitHub account with contributions to multiple organizations would be the simplest way. As it turns out, my current job came with a separate GitHub account. So now I have two GitHub accounts, one for personal projects and another for work. The problem I was running into was trying to keep my commits tied with the right GitHub ssh key. Luckily, git and ssh are configurable enough to get this sorted out.&lt;/p&gt;
@@ -95,9 +95,9 @@
  
  <entry>
    <title>Hello Mars</title>
-   <link href="http://bciuca.github.io/test/2013/04/10/hello-mars"/>
+   <link href="http://bciuca.com/test/2013/04/10/hello-mars"/>
    <updated>2013-04-10T00:00:00-07:00</updated>
-   <id>http://bciuca.github.io/test/2013/04/10/hello-mars</id>
+   <id>http://bciuca.com/test/2013/04/10/hello-mars</id>
    <content type="html">&lt;p&gt;Hello Mars! This is a test page. Yay.&lt;/p&gt;</content>
  </entry>
  

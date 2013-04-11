@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0">
 <channel>
-        <title>dev notes</title>
-        <description>dev notes - Bogdan Ciuca</description>
-        <link>http://bciuca.github.io</link>
-        <link>http://bciuca.github.io</link>
-        <lastBuildDate>2013-04-11T14:40:37-07:00</lastBuildDate>
-        <pubDate>2013-04-11T14:40:37-07:00</pubDate>
+        <title>devbog</title>
+        <description>devbog - Bogdan Ciuca</description>
+        <link>http://bciuca.com</link>
+        <link>http://bciuca.com</link>
+        <lastBuildDate>2013-04-11T16:40:30-07:00</lastBuildDate>
+        <pubDate>2013-04-11T16:40:30-07:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -86,16 +86,16 @@
         Hi bciuca-mycompany! You've successfully authenticated, but GitHub does not provide shell access.
     &lt;/code&gt;
 &lt;/pre&gt;</description>
-                <link>http://bciuca.github.io/dev/2013/04/10/using-multiple-github-accounts</link>
-                <guid>http://bciuca.github.io/dev/2013/04/10/using-multiple-github-accounts</guid>
+                <link>http://bciuca.com/dev/2013/04/10/using-multiple-github-accounts</link>
+                <guid>http://bciuca.com/dev/2013/04/10/using-multiple-github-accounts</guid>
                 <pubDate>2013-04-10T00:00:00-07:00</pubDate>
         </item>
 
         <item>
                 <title>Hello Mars</title>
                 <description>&lt;p&gt;Hello Mars! This is a test page. Yay.&lt;/p&gt;</description>
-                <link>http://bciuca.github.io/test/2013/04/10/hello-mars</link>
-                <guid>http://bciuca.github.io/test/2013/04/10/hello-mars</guid>
+                <link>http://bciuca.com/test/2013/04/10/hello-mars</link>
+                <guid>http://bciuca.com/test/2013/04/10/hello-mars</guid>
                 <pubDate>2013-04-10T00:00:00-07:00</pubDate>
         </item>
 
