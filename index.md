@@ -5,9 +5,16 @@ tagline: an unoriginal dev blog
 ---
 {% include JB/setup %}
 
-This is just a collection of notes that I find useful. I will give credit where it's due (if I don't, my bad, just drop me a line).
-    
-## Posts
+# Latest Post
+-------------
+<div class="post" class="markdown-body">
+{% assign x = site.posts.first %}
+<h2><a href="{{ x.url }}">{{ x.title }}</a></h2>
+{{ x.content }}
+</div>
+
+-------------
+# Older Posts
 
 <ul class="posts">
   {% for post in site.posts %}
