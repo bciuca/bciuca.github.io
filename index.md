@@ -1,7 +1,5 @@
 ---
 layout: page
-title: devely
-tagline: an unoriginal dev blog
 ---
 {% include JB/setup %}
 
