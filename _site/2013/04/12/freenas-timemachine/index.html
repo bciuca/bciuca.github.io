@@ -87,7 +87,7 @@
 
 
             <li>
-              <a href="https://github.com/bciuca">My Repo</a>
+              <a href="https://github.com/bciuca">GitHub</a>
             </li>
           </ul>
         </div>
@@ -108,7 +108,7 @@
       <span>12 April 2013</strong>
     </div>
     <div class="content">
-      <h1 id='freenas_powered_timemachine'>FreeNAS Powered TimeMachine</h1>
+      <h1 id='freenas_hosted_afp_share'>FreeNAS Hosted AFP Share</h1>
 
 <p>I have an older Acer netbook laying around that I wanted to turn into a NAS server to host my Time Machine backups for my Macs. I had a similar setup running on a Windows machine in <a href='https://www.virtualbox.org/'>VirtualBox</a> that worked very well. My intentions with the netbook NAS were purely to decrease power consumption.</p>
 
@@ -139,10 +139,6 @@
 
 <li>
 <p>Open the Disk Utility app (Command-SPACE to open Spotlight, type <code>Disk Utility</code>, or navigate to Applications\Utilities\Disk Utility).</p>
-</li>
-
-<li>
-<p>Insert your USB drive and unmount any partitions (see images).</p>
 </li>
 
 <li>
@@ -240,15 +236,15 @@
 </li>
 
 <li>
-<p>Add the volume from Storage &gt; Volumes (insert image here FN_storage_vols.png)</p>
+<p>Add the volume from Storage &gt; Volumes <br /> <img border='1' src='/images/FN_storage_vols.png' /> <br /> <br /></p>
 </li>
 
 <li>
-<p>Set the volume permissions, Storage &gt; Volumes &gt; /mnt/TimeMachine0 &gt; Change Permissions. We will set the permissions to <code>nobody</code> for both user and group (insert vol_permissions.png). The same user, &#8216;nobody&#8217;, will be used when setting up the shared volume.</p>
+<p>Set the volume permissions, Storage &gt; Volumes &gt; /mnt/TimeMachine0 &gt; Change Permissions. We will set the permissions to <code>nobody</code> for both user and group. The same user, &#8216;nobody&#8217;, will be used when setting up the shared volume. <br /> <img border='1' src='/images/vol_permissions.png' /> <br /> <br /></p>
 </li>
 
 <li>
-<p>Create an AFP share. Sharing &gt; Apple (AFP) Shares &gt; Add Apple (AFP) Share <img src='/images/afp_share_0.png' border='1' /></p>
+<p>Create an AFP share. Sharing &gt; Apple (AFP) Shares &gt; Add Apple (AFP) Share <br /> <img border='1' src='/images/afp_share_0.png' /> <br /> <br /></p>
 </li>
 
 <li>

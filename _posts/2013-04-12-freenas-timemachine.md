@@ -29,11 +29,9 @@ My netbook does not have an optical drive so I will need to install FreeNAS via 
 
 5. Open the Disk Utility app (Command-SPACE to open Spotlight, type `Disk Utility`, or navigate to Applications\Utilities\Disk Utility).
 
-6. Insert your USB drive and unmount any partitions (see images).
+6. Open Terminal (from Spotlight, or also in the Applications\Utilities directory).
 
-7. Open Terminal (from Spotlight, or also in the Applications\Utilities directory).
-
-8. From the terminal, type `diskutil list` and you should see something like this:
+7. From the terminal, type `diskutil list` and you should see something like this:
    <pre>
     <code>
         diskutil list
@@ -50,16 +48,16 @@ My netbook does not have an optical drive so I will need to install FreeNAS via 
     </code>
    </pre>
 
-9. Unmount the USB drive from the command line, `diskutil unmountDisk /dev/disk1`. If successful, you should see the result:
+8. Unmount the USB drive from the command line, `diskutil unmountDisk /dev/disk1`. If successful, you should see the result:
    <pre>
     <code>
         Unmount of all volumes on disk1 was successful
     </code>
    </pre>
 
-10. Now it's time to write the image to the USB drive (`sudo` to get elevated privileges, requires root/admin password) `sudo dd if=FreeNAS-8.3.1-RELEASE-x64.img of=/dev/disk1 bs=64k`. This process will take some time. Once completed, the prompt will return.
+9. Now it's time to write the image to the USB drive (`sudo` to get elevated privileges, requires root/admin password) `sudo dd if=FreeNAS-8.3.1-RELEASE-x64.img of=/dev/disk1 bs=64k`. This process will take some time. Once completed, the prompt will return.
 
-11. Now you are all set and ready to boot your FreeNAS machine from the USB drive.
+10. Now you are all set and ready to boot your FreeNAS machine from the USB drive.
 
 ## Booting into FreeNAS
 
@@ -101,12 +99,24 @@ My netbook does not have an optical drive so I will need to install FreeNAS via 
 
 1. You will first need to specify a disk to use for your Time Machine backup. The disk should have at least the same capacity as the Mac you will be backing up. In my case, I will be using a 1 TB hard drive.
 
-2. Add the volume from Storage > Volumes (insert image here FN_storage_vols.png)
+2. Add the volume from Storage > Volumes
+   <br>
+   <img src ="/images/FN_storage_vols.png" border="1"/>
+   <br>
+   <br>
 
-3. Set the volume permissions, Storage > Volumes > /mnt/TimeMachine0 > Change Permissions. We will set the permissions to `nobody` for both user and group (insert vol_permissions.png). The same user, 'nobody', will be used when setting up the shared volume.
+3. Set the volume permissions, Storage > Volumes > /mnt/TimeMachine0 > Change Permissions. We will set the permissions to `nobody` for both user and group. The same user, 'nobody', will be used when setting up the shared volume.
+   <br>
+   <img src ="/images/vol_permissions.png" border="1"/>
+   <br>
+   <br>
 
-4. Create an AFP share. Sharing > Apple (AFP) Shares > Add Apple (AFP) Share <img src ="/images/afp_share_0.png" border="1"/>
-
+4. Create an AFP share. Sharing > Apple (AFP) Shares > Add Apple (AFP) Share 
+   <br>
+   <img src ="/images/afp_share_0.png" border="1"/>
+   <br>
+   <br>
+   
 5. The following fields were configured for the share:
    - Name: TimeMachine
    - Path: /mnt/TimeMachine0

@@ -4,13 +4,209 @@
  <title>devbog</title>
  <link href="http://bciuca.com/" rel="self"/>
  <link href="http://bciuca.com"/>
- <updated>2013-04-11T16:40:30-07:00</updated>
+ <updated>2013-04-16T10:51:13-07:00</updated>
  <id>http://bciuca.com</id>
  <author>
    <name>Bogdan Ciuca</name>
    <email>b@bciuca.com</email>
  </author>
 
+ 
+ <entry>
+   <title>FreeNAS AFP Share for Macs</title>
+   <link href="http://bciuca.com/2013/04/12/freenas-timemachine"/>
+   <updated>2013-04-12T00:00:00-07:00</updated>
+   <id>http://bciuca.com/2013/04/12/freenas-timemachine</id>
+   <content type="html">&lt;h1 id='freenas_hosted_afp_share'&gt;FreeNAS Hosted AFP Share&lt;/h1&gt;
+
+&lt;p&gt;I have an older Acer netbook laying around that I wanted to turn into a NAS server to host my Time Machine backups for my Macs. I had a similar setup running on a Windows machine in &lt;a href='https://www.virtualbox.org/'&gt;VirtualBox&lt;/a&gt; that worked very well. My intentions with the netbook NAS were purely to decrease power consumption.&lt;/p&gt;
+
+&lt;p&gt;When trying to recreate my Virtual Box setup on my netbook, I did run into an issue that prevented me from using the AFP FreeNAS share as a valid Time Machine drive. Even though I was able to connect to the share and write files, Time Machine did not like something about the setup.&lt;/p&gt;
+
+&lt;p&gt;The steps described below can at least get you to create a valid AFP share that you can use with your Mac machines as a network drive.&lt;/p&gt;
+
+&lt;h2 id='creating_a_bootable_freenas_usb_drive'&gt;Creating a Bootable FreeNAS USB Drive&lt;/h2&gt;
+
+&lt;p&gt;My netbook does not have an optical drive so I will need to install FreeNAS via a bootable USB.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Download the software from &lt;a href='http://www.freenas.org'&gt;FreeNAS&lt;/a&gt;. At the time of writing I downloaded &lt;a href='http://sourceforge.net/projects/freenas/files/FreeNAS-8.3.1/RELEASE-p2/x86/FreeNAS-8.3.1-RELEASE-p2-x86.iso/download'&gt;version 8.3.1 34-bit disk image&lt;/a&gt;. There are 64-bit versions as well, just make sure your system supports it.&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;You will also need &lt;a href='http://www.kekaosx.com/en/'&gt;Keka&lt;/a&gt; or some other unarchiver to extract the disk image from the downloaded file.&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;Install Keka (open the keka.dmg file you downloaded and drag the app to your applications folder).&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;Right-click the FreeNAS disk image you downloaded in step 1 and select &amp;#8216;Open With &amp;gt; Keka&amp;#8217;. This process may take a few minutes to extract the disk image. When complete, you will have a .img file.&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;Open the Disk Utility app (Command-SPACE to open Spotlight, type &lt;code&gt;Disk Utility&lt;/code&gt;, or navigate to Applications\Utilities\Disk Utility).&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;Open Terminal (from Spotlight, or also in the Applications\Utilities directory).&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;From the terminal, type &lt;code&gt;diskutil list&lt;/code&gt; and you should see something like this: &lt;pre&gt;
+ &lt;code&gt;
+     diskutil list
+     /dev/disk0
+        #:                       TYPE NAME                    SIZE       IDENTIFIER
+        0:      GUID_partition_scheme                        *500.1 GB   disk0
+        1:                        EFI                         209.7 MB   disk0s1
+        2:                  Apple_HFS Mac OS X                499.2 GB   disk0s2
+        3:                 Apple_Boot Recovery HD             650.0 MB   disk0s3
+     /dev/disk1
+        #:                       TYPE NAME                    SIZE       IDENTIFIER
+        0:     FDisk_partition_scheme                        *1.1 GB     disk1
+        1:                 DOS_FAT_32 NO NAME                 1.0 GB     disk1s1
+ &lt;/code&gt;
+&lt;/pre&gt;&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;Unmount the USB drive from the command line, &lt;code&gt;diskutil unmountDisk /dev/disk1&lt;/code&gt;. If successful, you should see the result: &lt;pre&gt;
+ &lt;code&gt;
+     Unmount of all volumes on disk1 was successful
+ &lt;/code&gt;
+&lt;/pre&gt;&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;Now it&amp;#8217;s time to write the image to the USB drive (&lt;code&gt;sudo&lt;/code&gt; to get elevated privileges, requires root/admin password) &lt;code&gt;sudo dd if=FreeNAS-8.3.1-RELEASE-x64.img of=/dev/disk1 bs=64k&lt;/code&gt;. This process will take some time. Once completed, the prompt will return.&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;Now you are all set and ready to boot your FreeNAS machine from the USB drive.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id='booting_into_freenas'&gt;Booting into FreeNAS&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;At the BIOS screen, press the appropriate keystroke to get the boot menu and then selecting the USB device. You can also change the default boot order in the BIOS setup.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+&lt;li&gt;If you want to change boot order on a Mac, on boot, hold the Option key until you are presented with a list of bootable devices.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;The system should now boot into FreeNAS.&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;After FreeNAS boots and loads, you should be presented with this screen (your IP will be different): &lt;pre&gt;
+ &lt;code&gt;
+     Console setup
+     -------------
+     .
+     1) Configure Network Interfaces
+     2) Configure Link Aggregation
+     3) Configure VLAN Interface
+     4) Configure Default Route
+     5) Configure Static Routes
+     6) Configure DNS
+     7) Reset WebGUI login credentials
+     8) Reset to factory defaults
+     9) Shell
+     10) Reboot
+     11) Shutdown
+     .
+     You may try the following URLs to access the web user interface:
+     .
+     http://192.168.1.10/
+     .
+     .
+     Enter an option from 1-11:
+ &lt;/code&gt;
+&lt;/pre&gt;&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;From another machine on the same network as the FreeNAS box, open up the browser and point to the URL shown. You will be able to configure the rest of the NAS from this web interface.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id='setting_up_a_time_machine_volume'&gt;Setting up a Time Machine Volume&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;You will first need to specify a disk to use for your Time Machine backup. The disk should have at least the same capacity as the Mac you will be backing up. In my case, I will be using a 1 TB hard drive.&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;Add the volume from Storage &amp;gt; Volumes &lt;br /&gt; &lt;img border='1' src='/images/FN_storage_vols.png' /&gt; &lt;br /&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;Set the volume permissions, Storage &amp;gt; Volumes &amp;gt; /mnt/TimeMachine0 &amp;gt; Change Permissions. We will set the permissions to &lt;code&gt;nobody&lt;/code&gt; for both user and group. The same user, &amp;#8216;nobody&amp;#8217;, will be used when setting up the shared volume. &lt;br /&gt; &lt;img border='1' src='/images/vol_permissions.png' /&gt; &lt;br /&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;Create an AFP share. Sharing &amp;gt; Apple (AFP) Shares &amp;gt; Add Apple (AFP) Share &lt;br /&gt; &lt;img border='1' src='/images/afp_share_0.png' /&gt; &lt;br /&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;The following fields were configured for the share:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Name: TimeMachine&lt;/li&gt;
+
+&lt;li&gt;Path: /mnt/TimeMachine0&lt;/li&gt;
+
+&lt;li&gt;Share/Confirm Password: your password here&lt;/li&gt;
+
+&lt;li&gt;Allow List: nobody&lt;/li&gt;
+
+&lt;li&gt;Read-write List: nobody&lt;/li&gt;
+
+&lt;li&gt;Disk Discovery: checked&lt;/li&gt;
+
+&lt;li&gt;Disk discovery mode: Time Machine&lt;/li&gt;
+
+&lt;li&gt;Database path: /mnt/TimeMachine0&lt;/li&gt;
+
+&lt;li&gt;Enabled .AppleDouble: checked&lt;/li&gt;
+
+&lt;li&gt;AFP3 Unix Privs: checked for Macs with OS X 10.5 or greater Click ok to save.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id='connecting_to_the_time_machine_share'&gt;Connecting to the Time Machine Share&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;From the Finder menu, Go &amp;gt; Connect to Server&amp;#8230; Enter &lt;code&gt;afp://[your free nas ip]&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;You will be asked for a password, this will be the password set for the &amp;#8216;nobody&amp;#8217; user.&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;Once connected, you will then be prompted for the share password you set in the AFP share above.&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;If all worked out, you should be able to connect.&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;Reading and writing files to the drive is fine, but I was getting error &amp;#8216;OSStatus error 13&amp;#8217; when trying to select the disk in Time Machine setup.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</content>
+ </entry>
  
  <entry>
    <title>Using Multiple GitHub Accounts</title>
@@ -75,7 +271,7 @@
     &lt;/code&gt;
 &lt;/pre&gt;&lt;/p&gt;
 
-&lt;p&gt;While you can have global git user prefences set, such as email, I configured my email in the project git config to use my work address.&lt;/p&gt;
+&lt;p&gt;While you can have global git user preferences set, such as email, I configured my email in the project git config to use my work address.&lt;/p&gt;
 
 &lt;p&gt;For my personal repo, I just use my default global user settings and the usual git ssh addresses (i.e. git@github.com). So there is really nothing more to add to your other git config unless you need further customization.&lt;/p&gt;
 
