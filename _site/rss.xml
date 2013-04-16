@@ -5,8 +5,8 @@
         <description>devbog - Bogdan Ciuca</description>
         <link>http://bciuca.com</link>
         <link>http://bciuca.com</link>
-        <lastBuildDate>2013-04-16T10:51:13-07:00</lastBuildDate>
-        <pubDate>2013-04-16T10:51:13-07:00</pubDate>
+        <lastBuildDate>2013-04-16T10:53:03-07:00</lastBuildDate>
+        <pubDate>2013-04-16T10:53:03-07:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -140,15 +140,15 @@
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;Add the volume from Storage &amp;gt; Volumes &lt;br /&gt; &lt;img border='1' src='/images/FN_storage_vols.png' /&gt; &lt;br /&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;Add the volume from Storage &amp;gt; Volumes &lt;br /&gt; &lt;br /&gt; &lt;img src='/images/FN_storage_vols.png' border='1' /&gt; &lt;br /&gt; &lt;br /&gt;&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;Set the volume permissions, Storage &amp;gt; Volumes &amp;gt; /mnt/TimeMachine0 &amp;gt; Change Permissions. We will set the permissions to &lt;code&gt;nobody&lt;/code&gt; for both user and group. The same user, &amp;#8216;nobody&amp;#8217;, will be used when setting up the shared volume. &lt;br /&gt; &lt;img border='1' src='/images/vol_permissions.png' /&gt; &lt;br /&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;Set the volume permissions, Storage &amp;gt; Volumes &amp;gt; /mnt/TimeMachine0 &amp;gt; Change Permissions. We will set the permissions to &lt;code&gt;nobody&lt;/code&gt; for both user and group. The same user, &amp;#8216;nobody&amp;#8217;, will be used when setting up the shared volume. &lt;br /&gt; &lt;br /&gt; &lt;img src='/images/vol_permissions.png' border='1' /&gt; &lt;br /&gt; &lt;br /&gt;&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;Create an AFP share. Sharing &amp;gt; Apple (AFP) Shares &amp;gt; Add Apple (AFP) Share &lt;br /&gt; &lt;img border='1' src='/images/afp_share_0.png' /&gt; &lt;br /&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;Create an AFP share. Sharing &amp;gt; Apple (AFP) Shares &amp;gt; Add Apple (AFP) Share &lt;br /&gt; &lt;br /&gt; &lt;img src='/images/afp_share_0.png' border='1' /&gt; &lt;br /&gt; &lt;br /&gt;&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;

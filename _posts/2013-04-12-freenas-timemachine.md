@@ -101,17 +101,20 @@ My netbook does not have an optical drive so I will need to install FreeNAS via 
 
 2. Add the volume from Storage > Volumes
    <br>
+   <br>
    <img src ="/images/FN_storage_vols.png" border="1"/>
    <br>
    <br>
 
 3. Set the volume permissions, Storage > Volumes > /mnt/TimeMachine0 > Change Permissions. We will set the permissions to `nobody` for both user and group. The same user, 'nobody', will be used when setting up the shared volume.
    <br>
+   <br>
    <img src ="/images/vol_permissions.png" border="1"/>
    <br>
    <br>
 
 4. Create an AFP share. Sharing > Apple (AFP) Shares > Add Apple (AFP) Share 
+   <br>
    <br>
    <img src ="/images/afp_share_0.png" border="1"/>
    <br>
