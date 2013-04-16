@@ -23,13 +23,11 @@ My netbook does not have an optical drive so I will need to install FreeNAS via 
 
 2. You will also need [Keka](http://www.kekaosx.com/en/) or some other unarchiver to extract the disk image from the downloaded file.
 
-3. Install Keka (open the keka.dmg file you downloaded and drag the app to your applications folder).
+3. To extract with Keka, right-click the FreeNAS disk image you downloaded in step 1 and select 'Open With > Keka'. This process may take a few minutes to extract the disk image. When complete, you will have a .img file.
 
-4. Right-click the FreeNAS disk image you downloaded in step 1 and select 'Open With > Keka'. This process may take a few minutes to extract the disk image. When complete, you will have a .img file.
+4. Open Terminal (from Spotlight, or also in the Applications\Utilities directory).
 
-5. Open Terminal (from Spotlight, or also in the Applications\Utilities directory).
-
-6. From the terminal, type `diskutil list` and you should see something like this:
+5. From the terminal, type `diskutil list` and you should see something like this:
    <pre>
     <code>
         diskutil list
@@ -46,16 +44,16 @@ My netbook does not have an optical drive so I will need to install FreeNAS via 
     </code>
    </pre>
 
-7. Unmount the USB drive from the command line, `diskutil unmountDisk /dev/disk1`. If successful, you should see the result:
+6. Unmount the USB drive from the command line, `diskutil unmountDisk /dev/disk1`. If successful, you should see the result:
    <pre>
     <code>
         Unmount of all volumes on disk1 was successful
     </code>
    </pre>
 
-8. Now it's time to write the image to the USB drive (`sudo` to get elevated privileges, requires root/admin password) `sudo dd if=FreeNAS-8.3.1-RELEASE-x64.img of=/dev/disk1 bs=64k`. This process will take some time. Once completed, the prompt will return.
+7. Now it's time to write the image to the USB drive (`sudo` to get elevated privileges, requires root/admin password) `sudo dd if=FreeNAS-8.3.1-RELEASE-x64.img of=/dev/disk1 bs=64k`. This process will take some time. Once completed, the prompt will return.
 
-9. Now you are all set and ready to boot your FreeNAS machine from the USB drive.
+8. Now you are all set and ready to boot your FreeNAS machine from the USB drive.
 
 ## Booting into FreeNAS
 
