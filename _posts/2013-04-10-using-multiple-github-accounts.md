@@ -65,7 +65,7 @@ Configure your git repo settings to use the configured ssh hostnames. The config
     </code>
 </pre>
 
-While you can have global git user prefences set, such as email, I configured my email in the project git config to use my work address.
+While you can have global git user preferences set, such as email, I configured my email in the project git config to use my work address.
 
 For my personal repo, I just use my default global user settings and the usual git ssh addresses (i.e. git@github.com). So there is really nothing more to add to your other git config unless you need further customization.
 
