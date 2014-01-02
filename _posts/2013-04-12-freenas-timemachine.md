@@ -28,28 +28,21 @@ My netbook does not have an optical drive so I will need to install FreeNAS via 
 4. Open Terminal (from Spotlight, or also in the Applications\Utilities directory).
 
 5. From the terminal, type `diskutil list` and you should see something like this:
-   <pre>
-    <code>
-        diskutil list
-        /dev/disk0
-           #:                       TYPE NAME                    SIZE       IDENTIFIER
-           0:      GUID_partition_scheme                        *500.1 GB   disk0
-           1:                        EFI                         209.7 MB   disk0s1
-           2:                  Apple_HFS Mac OS X                499.2 GB   disk0s2
-           3:                 Apple_Boot Recovery HD             650.0 MB   disk0s3
-        /dev/disk1
-           #:                       TYPE NAME                    SIZE       IDENTIFIER
-           0:     FDisk_partition_scheme                        *1.1 GB     disk1
-           1:                 DOS_FAT_32 NO NAME                 1.0 GB     disk1s1
-    </code>
-   </pre>
+
+    diskutil list
+    /dev/disk0
+       #:                       TYPE NAME                    SIZE       IDENTIFIER
+       0:      GUID_partition_scheme                        *500.1 GB   disk0
+       1:                        EFI                         209.7 MB   disk0s1
+       2:                  Apple_HFS Mac OS X                499.2 GB   disk0s2
+       3:                 Apple_Boot Recovery HD             650.0 MB   disk0s3
+    /dev/disk1
+       #:                       TYPE NAME                    SIZE       IDENTIFIER
+       0:     FDisk_partition_scheme                        *1.1 GB     disk1
+       1:                 DOS_FAT_32 NO NAME                 1.0 GB     disk1s1
 
 6. Unmount the USB drive from the command line, `diskutil unmountDisk /dev/disk1`. If successful, you should see the result:
-   <pre>
-    <code>
-        Unmount of all volumes on disk1 was successful
-    </code>
-   </pre>
+    Unmount of all volumes on disk1 was successful
 
 7. Now it's time to write the image to the USB drive (`sudo` to get elevated privileges, requires root/admin password) `sudo dd if=FreeNAS-8.3.1-RELEASE-x64.img of=/dev/disk1 bs=64k`. This process will take some time. Once completed, the prompt will return.
 
@@ -63,31 +56,28 @@ My netbook does not have an optical drive so I will need to install FreeNAS via 
 2. The system should now boot into FreeNAS.
 
 3. After FreeNAS boots and loads, you should be presented with this screen (your IP will be different):
-   <pre>
-    <code>
-        Console setup
-        -------------
-        .
-        1) Configure Network Interfaces
-        2) Configure Link Aggregation
-        3) Configure VLAN Interface
-        4) Configure Default Route
-        5) Configure Static Routes
-        6) Configure DNS
-        7) Reset WebGUI login credentials
-        8) Reset to factory defaults
-        9) Shell
-        10) Reboot
-        11) Shutdown
-        .
-        You may try the following URLs to access the web user interface:
-        .
-        http://192.168.1.10/
-        .
-        .
-        Enter an option from 1-11:
-    </code>
-   </pre>
+
+    Console setup
+    -------------
+    .
+    1) Configure Network Interfaces
+    2) Configure Link Aggregation
+    3) Configure VLAN Interface
+    4) Configure Default Route
+    5) Configure Static Routes
+    6) Configure DNS
+    7) Reset WebGUI login credentials
+    8) Reset to factory defaults
+    9) Shell
+    10) Reboot
+    11) Shutdown
+    .
+    You may try the following URLs to access the web user interface:
+    .
+    http://192.168.1.10/
+    .
+    .
+    Enter an option from 1-11:
 
 4. From another machine on the same network as the FreeNAS box, open up the browser and point to the URL shown. You will be able to configure the rest of the NAS from this web interface.
 

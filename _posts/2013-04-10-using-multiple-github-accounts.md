@@ -31,39 +31,31 @@ Now add the new public key to the work GitHub account (this will be under your G
 Configure ssh host names to use for work and personal. The config file is in `~/.ssh/config` or you can create one if needed: `touch ~/.ssh/config`
 
 The first host is the personal account and the second entry is for the work account. You can name the `Hostname` whatever you like.
-<pre>
-    <code>
-        Host github.com 
-           Hostname github.com 
-           User git 
-           IdentityFile ~/.ssh/id_rsa
-        Host github-mycompany
-           Hostname github.com
-           User git
-           IdentityFile ~/.ssh/id_rsa_mycompany
-    </code>
-</pre>
+    Host github.com 
+      Hostname github.com 
+      User git 
+      IdentityFile ~/.ssh/id_rsa
+    Host github-mycompany
+       Hostname github.com
+       User git
+       IdentityFile ~/.ssh/id_rsa_mycompany
 
 #### Configuring git repo
 Configure your git repo settings to use the configured ssh hostnames. The config file can be found in the `.git` directory of your git repo.
-<pre>
-    <code>
-        [core]
-           repositoryformatversion = 0
-           filemode = true
-           bare = false
-           logallrefupdates = true
-           ignorecase = true
-        [remote "origin"]
-           fetch = +refs/heads/*:refs/remotes/origin/*
-           url = git@github-mycompany:OrgName/corporate-stuff.git
-        [branch "xdev"]
-           remote = origin
-           merge = refs/heads/xdev
-        [user]
-           email = me@mycompany.com
-    </code>
-</pre>
+    [core]
+       repositoryformatversion = 0
+       filemode = true
+       bare = false
+       logallrefupdates = true
+       ignorecase = true
+    [remote "origin"]
+       fetch = +refs/heads/*:refs/remotes/origin/*
+       url = git@github-mycompany:OrgName/corporate-stuff.git
+    [branch "xdev"]
+       remote = origin
+       merge = refs/heads/xdev
+    [user]
+       email = me@mycompany.com
 
 While you can have global git user preferences set, such as email, I configured my email in the project git config to use my work address.
 
@@ -72,14 +64,10 @@ For my personal repo, I just use my default global user settings and the usual g
 #### Testing it out
 To test that the keys were added ok, you can run the following ssh commands.
 
-<pre>
-    <code>
-        ssh -T git@github.com
-        Hi bciuca! You've successfully authenticated, but GitHub does not provide shell access.
+    ssh -T git@github.com
+    Hi bciuca! You've successfully authenticated, but GitHub does not provide shell access.
 
-        ssh -T git@github-mycompany
-        Hi bciuca-mycompany! You've successfully authenticated, but GitHub does not provide shell access.
-    </code>
-</pre>
+    ssh -T git@github-mycompany
+    Hi bciuca-mycompany! You've successfully authenticated, but GitHub does not provide shell access.
 
  
