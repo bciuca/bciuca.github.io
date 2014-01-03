@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: "Symbolic Links and Apache on OS X"
 description: ""
 ---
