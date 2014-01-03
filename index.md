@@ -5,11 +5,11 @@ layout: page
 
 # Latest Post
 -------------
-<div class="post" class="markdown-body">
+
 {% assign x = site.posts.first %}
 <h2><a href="{{ x.url }}">{{ x.title }}</a></h2>
 {{ x.content }}
-</div>
+
 
 -------------
 # Older Posts

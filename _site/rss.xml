@@ -5,44 +5,70 @@
         <description>devbog - Bogdan Ciuca</description>
         <link>http://bciuca.com</link>
         <link>http://bciuca.com</link>
-        <lastBuildDate>2013-04-16T10:53:03-07:00</lastBuildDate>
-        <pubDate>2013-04-16T10:53:03-07:00</pubDate>
+        <lastBuildDate>2014-01-02T21:59:31-08:00</lastBuildDate>
+        <pubDate>2014-01-02T21:59:31-08:00</pubDate>
         <ttl>1800</ttl>
 
 
         <item>
-                <title>FreeNAS AFP Share for Macs</title>
-                <description>&lt;h1 id='freenas_hosted_afp_share'&gt;FreeNAS Hosted AFP Share&lt;/h1&gt;
+                <title>Symbolic Links and Apache on OS X</title>
+                <description>&lt;h3 id=&quot;creating_symbolic_links&quot;&gt;Creating Symbolic Links&lt;/h3&gt;
 
-&lt;p&gt;I have an older Acer netbook laying around that I wanted to turn into a NAS server to host my Time Machine backups for my Macs. I had a similar setup running on a Windows machine in &lt;a href='https://www.virtualbox.org/'&gt;VirtualBox&lt;/a&gt; that worked very well. My intentions with the netbook NAS were purely to decrease power consumption.&lt;/p&gt;
+&lt;p&gt;I have a webapp project that I need to run in a browser locally on my develoment machine. My options to test the webapp is to either set my apache config to point to my development dir, or make a build sctipt to copy and paste the code to a test path in my existing web server root.&lt;/p&gt;
+
+&lt;p&gt;In this example, I am testing everything locally with no need for minification or other build steps before hosting the code. For simplicity, a symbolic link in the web server root will point to my development directory, &lt;code&gt;/Users/bciuca/dev/MyTestApp&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;ln -s&lt;/code&gt; command will create the symbolic link, given a source and destination path (sudo is needed to write the symlink).&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo ln -s /Users/bciuca/dev/MyTestApp/ /Library/WebServer/Documents/testapp&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;So the URL &lt;a href=&quot;&quot;&gt;http://localhost/testapp&lt;/a&gt; is now serving files from &lt;code&gt;/Users/bciuca/dev/MyTestApp/&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://gigaom.com/2011/04/27/how-to-create-and-use-symlinks-on-a-mac/&quot;&gt;Further reading on symbolic and hard links in OS X&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;file_permissions&quot;&gt;File Permissions&lt;/h3&gt;
+
+&lt;p&gt;To complete the setup, the correct file permissions need to be set in order for the pages to be served.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;chmod o+x ~/dev&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;chmod o+x ~/dev/MyTestApp&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;restart_apache&quot;&gt;Restart Apache&lt;/h3&gt;
+
+&lt;p&gt;Finally, restart Apache.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;apachectl -k graceful&lt;/code&gt;&lt;/p&gt;</description>
+                <link>http://bciuca.com/2014/01/02/mac_apache</link>
+                <guid>http://bciuca.com/2014/01/02/mac_apache</guid>
+                <pubDate>2014-01-02T00:00:00-08:00</pubDate>
+        </item>
+
+        <item>
+                <title>FreeNAS AFP Share for Macs</title>
+                <description>&lt;h1 id=&quot;freenas_hosted_afp_share&quot;&gt;FreeNAS Hosted AFP Share&lt;/h1&gt;
+
+&lt;p&gt;I have an older Acer netbook laying around that I wanted to turn into a NAS server to host my Time Machine backups for my Macs. I had a similar setup running on a Windows machine in &lt;a href=&quot;https://www.virtualbox.org/&quot;&gt;VirtualBox&lt;/a&gt; that worked very well. My intentions with the netbook NAS were purely to decrease power consumption.&lt;/p&gt;
 
 &lt;p&gt;When trying to recreate my Virtual Box setup on my netbook, I did run into an issue that prevented me from using the AFP FreeNAS share as a valid Time Machine drive. Even though I was able to connect to the share and write files, Time Machine did not like something about the setup.&lt;/p&gt;
 
 &lt;p&gt;The steps described below can at least get you to create a valid AFP share that you can use with your Mac machines as a network drive.&lt;/p&gt;
 
-&lt;h2 id='creating_a_bootable_freenas_usb_drive'&gt;Creating a Bootable FreeNAS USB Drive&lt;/h2&gt;
+&lt;h2 id=&quot;creating_a_bootable_freenas_usb_drive&quot;&gt;Creating a Bootable FreeNAS USB Drive&lt;/h2&gt;
 
 &lt;p&gt;My netbook does not have an optical drive so I will need to install FreeNAS via a bootable USB.&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;
-&lt;p&gt;Download the software from &lt;a href='http://www.freenas.org'&gt;FreeNAS&lt;/a&gt;. At the time of writing I downloaded &lt;a href='http://sourceforge.net/projects/freenas/files/FreeNAS-8.3.1/RELEASE-p2/x86/FreeNAS-8.3.1-RELEASE-p2-x86.iso/download'&gt;version 8.3.1 34-bit disk image&lt;/a&gt;. There are 64-bit versions as well, just make sure your system supports it.&lt;/p&gt;
+&lt;p&gt;Download the software from &lt;a href=&quot;http://www.freenas.org&quot;&gt;FreeNAS&lt;/a&gt;. At the time of writing I downloaded &lt;a href=&quot;http://sourceforge.net/projects/freenas/files/FreeNAS-8.3.1/RELEASE-p2/x86/FreeNAS-8.3.1-RELEASE-p2-x86.iso/download&quot;&gt;version 8.3.1 34-bit disk image&lt;/a&gt;. There are 64-bit versions as well, just make sure your system supports it.&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;You will also need &lt;a href='http://www.kekaosx.com/en/'&gt;Keka&lt;/a&gt; or some other unarchiver to extract the disk image from the downloaded file.&lt;/p&gt;
+&lt;p&gt;You will also need &lt;a href=&quot;http://www.kekaosx.com/en/&quot;&gt;Keka&lt;/a&gt; or some other unarchiver to extract the disk image from the downloaded file.&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;Install Keka (open the keka.dmg file you downloaded and drag the app to your applications folder).&lt;/p&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;p&gt;Right-click the FreeNAS disk image you downloaded in step 1 and select &amp;#8216;Open With &amp;gt; Keka&amp;#8217;. This process may take a few minutes to extract the disk image. When complete, you will have a .img file.&lt;/p&gt;
-&lt;/li&gt;
-
-&lt;li&gt;
-&lt;p&gt;Open the Disk Utility app (Command-SPACE to open Spotlight, type &lt;code&gt;Disk Utility&lt;/code&gt;, or navigate to Applications\Utilities\Disk Utility).&lt;/p&gt;
+&lt;p&gt;To extract with Keka, right-click the FreeNAS disk image you downloaded in step 1 and select ‘Open With &amp;gt; Keka’. This process may take a few minutes to extract the disk image. When complete, you will have a .img file.&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
@@ -50,33 +76,17 @@
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;From the terminal, type &lt;code&gt;diskutil list&lt;/code&gt; and you should see something like this: &lt;pre&gt;
- &lt;code&gt;
-     diskutil list
-     /dev/disk0
-        #:                       TYPE NAME                    SIZE       IDENTIFIER
-        0:      GUID_partition_scheme                        *500.1 GB   disk0
-        1:                        EFI                         209.7 MB   disk0s1
-        2:                  Apple_HFS Mac OS X                499.2 GB   disk0s2
-        3:                 Apple_Boot Recovery HD             650.0 MB   disk0s3
-     /dev/disk1
-        #:                       TYPE NAME                    SIZE       IDENTIFIER
-        0:     FDisk_partition_scheme                        *1.1 GB     disk1
-        1:                 DOS_FAT_32 NO NAME                 1.0 GB     disk1s1
- &lt;/code&gt;
-&lt;/pre&gt;&lt;/p&gt;
+&lt;p&gt;From the terminal, type &lt;code&gt;diskutil list&lt;/code&gt; and you should see something like this:&lt;/p&gt;
+
+&lt;p&gt;diskutil list /dev/disk0 #: TYPE NAME SIZE IDENTIFIER 0: GUID_partition_scheme &lt;em&gt;500.1 GB disk0 1: EFI 209.7 MB disk0s1 2: Apple_HFS Mac OS X 499.2 GB disk0s2 3: Apple_Boot Recovery HD 650.0 MB disk0s3 /dev/disk1 #: TYPE NAME SIZE IDENTIFIER 0: FDisk_partition_scheme&lt;/em&gt;1.1 GB disk1 1: DOS_FAT_32 NO NAME 1.0 GB disk1s1&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;Unmount the USB drive from the command line, &lt;code&gt;diskutil unmountDisk /dev/disk1&lt;/code&gt;. If successful, you should see the result: &lt;pre&gt;
- &lt;code&gt;
-     Unmount of all volumes on disk1 was successful
- &lt;/code&gt;
-&lt;/pre&gt;&lt;/p&gt;
+&lt;p&gt;Unmount the USB drive from the command line, &lt;code&gt;diskutil unmountDisk /dev/disk1&lt;/code&gt;. If successful, you should see the result: Unmount of all volumes on disk1 was successful&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;Now it&amp;#8217;s time to write the image to the USB drive (&lt;code&gt;sudo&lt;/code&gt; to get elevated privileges, requires root/admin password) &lt;code&gt;sudo dd if=FreeNAS-8.3.1-RELEASE-x64.img of=/dev/disk1 bs=64k&lt;/code&gt;. This process will take some time. Once completed, the prompt will return.&lt;/p&gt;
+&lt;p&gt;Now it’s time to write the image to the USB drive (&lt;code&gt;sudo&lt;/code&gt; to get elevated privileges, requires root/admin password) &lt;code&gt;sudo dd if=FreeNAS-8.3.1-RELEASE-x64.img of=/dev/disk1 bs=64k&lt;/code&gt;. This process will take some time. Once completed, the prompt will return.&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
@@ -84,7 +94,7 @@
 &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id='booting_into_freenas'&gt;Booting into FreeNAS&lt;/h2&gt;
+&lt;h2 id=&quot;booting_into_freenas&quot;&gt;Booting into FreeNAS&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;At the BIOS screen, press the appropriate keystroke to get the boot menu and then selecting the USB device. You can also change the default boot order in the BIOS setup.&lt;/li&gt;
@@ -100,31 +110,11 @@
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;After FreeNAS boots and loads, you should be presented with this screen (your IP will be different): &lt;pre&gt;
- &lt;code&gt;
-     Console setup
-     -------------
-     .
-     1) Configure Network Interfaces
-     2) Configure Link Aggregation
-     3) Configure VLAN Interface
-     4) Configure Default Route
-     5) Configure Static Routes
-     6) Configure DNS
-     7) Reset WebGUI login credentials
-     8) Reset to factory defaults
-     9) Shell
-     10) Reboot
-     11) Shutdown
-     .
-     You may try the following URLs to access the web user interface:
-     .
-     http://192.168.1.10/
-     .
-     .
-     Enter an option from 1-11:
- &lt;/code&gt;
-&lt;/pre&gt;&lt;/p&gt;
+&lt;p&gt;After FreeNAS boots and loads, you should be presented with this screen (your IP will be different):&lt;/p&gt;
+
+&lt;h2 id=&quot;console_setup&quot;&gt;Console setup&lt;/h2&gt;
+
+&lt;p&gt;. 1) Configure Network Interfaces 2) Configure Link Aggregation 3) Configure VLAN Interface 4) Configure Default Route 5) Configure Static Routes 6) Configure DNS 7) Reset WebGUI login credentials 8) Reset to factory defaults 9) Shell 10) Reboot 11) Shutdown . You may try the following URLs to access the web user interface: . http://192.168.1.10/ . . Enter an option from 1-11:&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
@@ -132,7 +122,7 @@
 &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id='setting_up_a_time_machine_volume'&gt;Setting up a Time Machine Volume&lt;/h2&gt;
+&lt;h2 id=&quot;setting_up_a_time_machine_volume&quot;&gt;Setting up a Time Machine Volume&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;
@@ -140,15 +130,15 @@
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;Add the volume from Storage &amp;gt; Volumes &lt;br /&gt; &lt;br /&gt; &lt;img src='/images/FN_storage_vols.png' border='1' /&gt; &lt;br /&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;Add the volume from Storage &amp;gt; Volumes &lt;br /&gt; &lt;br /&gt; &lt;img border=&#39;1&#39; src=&#39;/images/FN_storage_vols.png&#39; /&gt; &lt;br /&gt; &lt;br /&gt;&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;Set the volume permissions, Storage &amp;gt; Volumes &amp;gt; /mnt/TimeMachine0 &amp;gt; Change Permissions. We will set the permissions to &lt;code&gt;nobody&lt;/code&gt; for both user and group. The same user, &amp;#8216;nobody&amp;#8217;, will be used when setting up the shared volume. &lt;br /&gt; &lt;br /&gt; &lt;img src='/images/vol_permissions.png' border='1' /&gt; &lt;br /&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;Set the volume permissions, Storage &amp;gt; Volumes &amp;gt; /mnt/TimeMachine0 &amp;gt; Change Permissions. We will set the permissions to &lt;code&gt;nobody&lt;/code&gt; for both user and group. The same user, ‘nobody’, will be used when setting up the shared volume. &lt;br /&gt; &lt;br /&gt; &lt;img border=&#39;1&#39; src=&#39;/images/vol_permissions.png&#39; /&gt; &lt;br /&gt; &lt;br /&gt;&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;Create an AFP share. Sharing &amp;gt; Apple (AFP) Shares &amp;gt; Add Apple (AFP) Share &lt;br /&gt; &lt;br /&gt; &lt;img src='/images/afp_share_0.png' border='1' /&gt; &lt;br /&gt; &lt;br /&gt;&lt;/p&gt;
+&lt;p&gt;Create an AFP share. Sharing &amp;gt; Apple (AFP) Shares &amp;gt; Add Apple (AFP) Share &lt;br /&gt; &lt;br /&gt; &lt;img border=&#39;1&#39; src=&#39;/images/afp_share_0.png&#39; /&gt; &lt;br /&gt; &lt;br /&gt;&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
@@ -178,15 +168,15 @@
 &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id='connecting_to_the_time_machine_share'&gt;Connecting to the Time Machine Share&lt;/h2&gt;
+&lt;h2 id=&quot;connecting_to_the_time_machine_share&quot;&gt;Connecting to the Time Machine Share&lt;/h2&gt;
 
 &lt;ol&gt;
 &lt;li&gt;
-&lt;p&gt;From the Finder menu, Go &amp;gt; Connect to Server&amp;#8230; Enter &lt;code&gt;afp://[your free nas ip]&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;From the Finder menu, Go &amp;gt; Connect to Server… Enter &lt;code&gt;afp://[your free nas ip]&lt;/code&gt;&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;You will be asked for a password, this will be the password set for the &amp;#8216;nobody&amp;#8217; user.&lt;/p&gt;
+&lt;p&gt;You will be asked for a password, this will be the password set for the ‘nobody’ user.&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
@@ -198,7 +188,7 @@
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;Reading and writing files to the drive is fine, but I was getting error &amp;#8216;OSStatus error 13&amp;#8217; when trying to select the disk in Time Machine setup.&lt;/p&gt;
+&lt;p&gt;Reading and writing files to the drive is fine, but I was getting error ‘OSStatus error 13’ when trying to select the disk in Time Machine setup.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;</description>
                 <link>http://bciuca.com/2013/04/12/freenas-timemachine</link>
@@ -208,15 +198,15 @@
 
         <item>
                 <title>Using Multiple GitHub Accounts</title>
-                <description>&lt;h4 id='why_would_you_need_more_than_one_github_account'&gt;Why would you need more than one GitHub account?&lt;/h4&gt;
+                <description>&lt;h4 id=&quot;why_would_you_need_more_than_one_github_account&quot;&gt;Why would you need more than one GitHub account?&lt;/h4&gt;
 
 &lt;p&gt;Ideally, having a single GitHub account with contributions to multiple organizations would be the simplest way. As it turns out, my current job came with a separate GitHub account. So now I have two GitHub accounts, one for personal projects and another for work. The problem I was running into was trying to keep my commits tied with the right GitHub ssh key. Luckily, git and ssh are configurable enough to get this sorted out.&lt;/p&gt;
 
-&lt;p&gt;Through some simple googling, I found &lt;a href='http://net.tutsplus.com/tutorials/tools-and-tips/how-to-work-with-github-and-multiple-accounts/'&gt;Jeffery Way&amp;#8217;s blog post&lt;/a&gt;. The steps I outlined below is what I did to get this setup on my Mac. More details can be found on Jeffery&amp;#8217;s blog.&lt;/p&gt;
+&lt;p&gt;Through some simple googling, I found &lt;a href=&quot;http://net.tutsplus.com/tutorials/tools-and-tips/how-to-work-with-github-and-multiple-accounts/&quot;&gt;Jeffery Way’s blog post&lt;/a&gt;. The steps I outlined below is what I did to get this setup on my Mac. More details can be found on Jeffery’s blog.&lt;/p&gt;
 
 &lt;p&gt;The following steps assume that you already have an existing key you use with one of your github accounts. For the purpose of this writeup, the default &lt;code&gt;id_rsa&lt;/code&gt; key is associated with your personal GitHub account.&lt;/p&gt;
 
-&lt;h4 id='creating_and_adding_ssh_keys'&gt;Creating and adding ssh keys&lt;/h4&gt;
+&lt;h4 id=&quot;creating_and_adding_ssh_keys&quot;&gt;Creating and adding ssh keys&lt;/h4&gt;
 
 &lt;p&gt;A ssh key will be needed to use with the work GitHub account. In your &lt;code&gt;~/.ssh&lt;/code&gt; directory, run the following ssh command: &lt;code&gt;ssh-keygen -t rsa -C &amp;quot;me@mycompany.com&amp;quot;&lt;/code&gt;&lt;/p&gt;
 
@@ -224,64 +214,33 @@
 
 &lt;p&gt;Add the key to ssh: &lt;code&gt;ssh-add ~/.ssh/id_rsa_mycompany&lt;/code&gt;&lt;/p&gt;
 
-&lt;h4 id='setting_up_github_with_your_new_ssh_key'&gt;Setting up GitHub with your new ssh key&lt;/h4&gt;
+&lt;h4 id=&quot;setting_up_github_with_your_new_ssh_key&quot;&gt;Setting up GitHub with your new ssh key&lt;/h4&gt;
 
 &lt;p&gt;Now add the new public key to the work GitHub account (this will be under your GitHub account settings). Open the &lt;code&gt;id_rsa_mycompany.pub&lt;/code&gt; public key file in a text editor and copy the text. Or just copy directly from the terminal: &lt;code&gt;cat ~/.ssh/id_rsa_mycompany.pub | pbcopy&lt;/code&gt;&lt;/p&gt;
 
-&lt;h4 id='configuring_ssh'&gt;Configuring ssh&lt;/h4&gt;
+&lt;h4 id=&quot;configuring_ssh&quot;&gt;Configuring ssh&lt;/h4&gt;
 
 &lt;p&gt;Configure ssh host names to use for work and personal. The config file is in &lt;code&gt;~/.ssh/config&lt;/code&gt; or you can create one if needed: &lt;code&gt;touch ~/.ssh/config&lt;/code&gt;&lt;/p&gt;
 
-&lt;p&gt;The first host is the personal account and the second entry is for the work account. You can name the &lt;code&gt;Hostname&lt;/code&gt; whatever you like. &lt;pre&gt;
-    &lt;code&gt;
-        Host github.com 
-           Hostname github.com 
-           User git 
-           IdentityFile ~/.ssh/id_rsa
-        Host github-mycompany
-           Hostname github.com
-           User git
-           IdentityFile ~/.ssh/id_rsa_mycompany
-    &lt;/code&gt;
-&lt;/pre&gt;&lt;/p&gt;
+&lt;p&gt;The first host is the personal account and the second entry is for the work account. You can name the &lt;code&gt;Hostname&lt;/code&gt; whatever you like. Host github.com Hostname github.com User git IdentityFile ~/.ssh/id_rsa Host github-mycompany Hostname github.com User git IdentityFile ~/.ssh/id_rsa_mycompany&lt;/p&gt;
 
-&lt;h4 id='configuring_git_repo'&gt;Configuring git repo&lt;/h4&gt;
+&lt;h4 id=&quot;configuring_git_repo&quot;&gt;Configuring git repo&lt;/h4&gt;
 
-&lt;p&gt;Configure your git repo settings to use the configured ssh hostnames. The config file can be found in the &lt;code&gt;.git&lt;/code&gt; directory of your git repo. &lt;pre&gt;
-    &lt;code&gt;
-        [core]
-           repositoryformatversion = 0
-           filemode = true
-           bare = false
-           logallrefupdates = true
-           ignorecase = true
-        [remote &quot;origin&quot;]
-           fetch = +refs/heads/*:refs/remotes/origin/*
-           url = git@github-mycompany:OrgName/corporate-stuff.git
-        [branch &quot;xdev&quot;]
-           remote = origin
-           merge = refs/heads/xdev
-        [user]
-           email = me@mycompany.com
-    &lt;/code&gt;
-&lt;/pre&gt;&lt;/p&gt;
+&lt;p&gt;Configure your git repo settings to use the configured ssh hostnames. The config file can be found in the &lt;code&gt;.git&lt;/code&gt; directory of your git repo. [core] repositoryformatversion = 0 filemode = true bare = false logallrefupdates = true ignorecase = true [remote origin] fetch = +refs/heads/&lt;em&gt;:refs/remotes/origin/&lt;/em&gt; url = git@github-mycompany:OrgName/corporate-stuff.git [branch xdev] remote = origin merge = refs/heads/xdev [user] email = me@mycompany.com&lt;/p&gt;
 
 &lt;p&gt;While you can have global git user preferences set, such as email, I configured my email in the project git config to use my work address.&lt;/p&gt;
 
 &lt;p&gt;For my personal repo, I just use my default global user settings and the usual git ssh addresses (i.e. git@github.com). So there is really nothing more to add to your other git config unless you need further customization.&lt;/p&gt;
 
-&lt;h4 id='testing_it_out'&gt;Testing it out&lt;/h4&gt;
+&lt;h4 id=&quot;testing_it_out&quot;&gt;Testing it out&lt;/h4&gt;
 
 &lt;p&gt;To test that the keys were added ok, you can run the following ssh commands.&lt;/p&gt;
-&lt;pre&gt;
-    &lt;code&gt;
-        ssh -T git@github.com
-        Hi bciuca! You've successfully authenticated, but GitHub does not provide shell access.
 
-        ssh -T git@github-mycompany
-        Hi bciuca-mycompany! You've successfully authenticated, but GitHub does not provide shell access.
-    &lt;/code&gt;
-&lt;/pre&gt;</description>
+&lt;pre&gt;&lt;code&gt;ssh -T git@github.com
+Hi bciuca! You&amp;#39;ve successfully authenticated, but GitHub does not provide shell access.
+
+ssh -T git@github-mycompany
+Hi bciuca-mycompany! You&amp;#39;ve successfully authenticated, but GitHub does not provide shell access.&lt;/code&gt;&lt;/pre&gt;</description>
                 <link>http://bciuca.com/dev/2013/04/10/using-multiple-github-accounts</link>
                 <guid>http://bciuca.com/dev/2013/04/10/using-multiple-github-accounts</guid>
                 <pubDate>2013-04-10T00:00:00-07:00</pubDate>

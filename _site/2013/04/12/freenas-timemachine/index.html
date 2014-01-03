@@ -108,37 +108,29 @@
       <span>12 April 2013</strong>
     </div>
     <div class="content">
-      <h1 id='freenas_hosted_afp_share'>FreeNAS Hosted AFP Share</h1>
+      <h1 id="freenas_hosted_afp_share">FreeNAS Hosted AFP Share</h1>
 
-<p>I have an older Acer netbook laying around that I wanted to turn into a NAS server to host my Time Machine backups for my Macs. I had a similar setup running on a Windows machine in <a href='https://www.virtualbox.org/'>VirtualBox</a> that worked very well. My intentions with the netbook NAS were purely to decrease power consumption.</p>
+<p>I have an older Acer netbook laying around that I wanted to turn into a NAS server to host my Time Machine backups for my Macs. I had a similar setup running on a Windows machine in <a href="https://www.virtualbox.org/">VirtualBox</a> that worked very well. My intentions with the netbook NAS were purely to decrease power consumption.</p>
 
 <p>When trying to recreate my Virtual Box setup on my netbook, I did run into an issue that prevented me from using the AFP FreeNAS share as a valid Time Machine drive. Even though I was able to connect to the share and write files, Time Machine did not like something about the setup.</p>
 
 <p>The steps described below can at least get you to create a valid AFP share that you can use with your Mac machines as a network drive.</p>
 
-<h2 id='creating_a_bootable_freenas_usb_drive'>Creating a Bootable FreeNAS USB Drive</h2>
+<h2 id="creating_a_bootable_freenas_usb_drive">Creating a Bootable FreeNAS USB Drive</h2>
 
 <p>My netbook does not have an optical drive so I will need to install FreeNAS via a bootable USB.</p>
 
 <ol>
 <li>
-<p>Download the software from <a href='http://www.freenas.org'>FreeNAS</a>. At the time of writing I downloaded <a href='http://sourceforge.net/projects/freenas/files/FreeNAS-8.3.1/RELEASE-p2/x86/FreeNAS-8.3.1-RELEASE-p2-x86.iso/download'>version 8.3.1 34-bit disk image</a>. There are 64-bit versions as well, just make sure your system supports it.</p>
+<p>Download the software from <a href="http://www.freenas.org">FreeNAS</a>. At the time of writing I downloaded <a href="http://sourceforge.net/projects/freenas/files/FreeNAS-8.3.1/RELEASE-p2/x86/FreeNAS-8.3.1-RELEASE-p2-x86.iso/download">version 8.3.1 34-bit disk image</a>. There are 64-bit versions as well, just make sure your system supports it.</p>
 </li>
 
 <li>
-<p>You will also need <a href='http://www.kekaosx.com/en/'>Keka</a> or some other unarchiver to extract the disk image from the downloaded file.</p>
+<p>You will also need <a href="http://www.kekaosx.com/en/">Keka</a> or some other unarchiver to extract the disk image from the downloaded file.</p>
 </li>
 
 <li>
-<p>Install Keka (open the keka.dmg file you downloaded and drag the app to your applications folder).</p>
-</li>
-
-<li>
-<p>Right-click the FreeNAS disk image you downloaded in step 1 and select &#8216;Open With &gt; Keka&#8217;. This process may take a few minutes to extract the disk image. When complete, you will have a .img file.</p>
-</li>
-
-<li>
-<p>Open the Disk Utility app (Command-SPACE to open Spotlight, type <code>Disk Utility</code>, or navigate to Applications\Utilities\Disk Utility).</p>
+<p>To extract with Keka, right-click the FreeNAS disk image you downloaded in step 1 and select ‘Open With &gt; Keka’. This process may take a few minutes to extract the disk image. When complete, you will have a .img file.</p>
 </li>
 
 <li>
@@ -146,33 +138,17 @@
 </li>
 
 <li>
-<p>From the terminal, type <code>diskutil list</code> and you should see something like this: <pre>
- <code>
-     diskutil list
-     /dev/disk0
-        #:                       TYPE NAME                    SIZE       IDENTIFIER
-        0:      GUID_partition_scheme                        *500.1 GB   disk0
-        1:                        EFI                         209.7 MB   disk0s1
-        2:                  Apple_HFS Mac OS X                499.2 GB   disk0s2
-        3:                 Apple_Boot Recovery HD             650.0 MB   disk0s3
-     /dev/disk1
-        #:                       TYPE NAME                    SIZE       IDENTIFIER
-        0:     FDisk_partition_scheme                        *1.1 GB     disk1
-        1:                 DOS_FAT_32 NO NAME                 1.0 GB     disk1s1
- </code>
-</pre></p>
+<p>From the terminal, type <code>diskutil list</code> and you should see something like this:</p>
+
+<p>diskutil list /dev/disk0 #: TYPE NAME SIZE IDENTIFIER 0: GUID_partition_scheme <em>500.1 GB disk0 1: EFI 209.7 MB disk0s1 2: Apple_HFS Mac OS X 499.2 GB disk0s2 3: Apple_Boot Recovery HD 650.0 MB disk0s3 /dev/disk1 #: TYPE NAME SIZE IDENTIFIER 0: FDisk_partition_scheme</em>1.1 GB disk1 1: DOS_FAT_32 NO NAME 1.0 GB disk1s1</p>
 </li>
 
 <li>
-<p>Unmount the USB drive from the command line, <code>diskutil unmountDisk /dev/disk1</code>. If successful, you should see the result: <pre>
- <code>
-     Unmount of all volumes on disk1 was successful
- </code>
-</pre></p>
+<p>Unmount the USB drive from the command line, <code>diskutil unmountDisk /dev/disk1</code>. If successful, you should see the result: Unmount of all volumes on disk1 was successful</p>
 </li>
 
 <li>
-<p>Now it&#8217;s time to write the image to the USB drive (<code>sudo</code> to get elevated privileges, requires root/admin password) <code>sudo dd if=FreeNAS-8.3.1-RELEASE-x64.img of=/dev/disk1 bs=64k</code>. This process will take some time. Once completed, the prompt will return.</p>
+<p>Now it’s time to write the image to the USB drive (<code>sudo</code> to get elevated privileges, requires root/admin password) <code>sudo dd if=FreeNAS-8.3.1-RELEASE-x64.img of=/dev/disk1 bs=64k</code>. This process will take some time. Once completed, the prompt will return.</p>
 </li>
 
 <li>
@@ -180,7 +156,7 @@
 </li>
 </ol>
 
-<h2 id='booting_into_freenas'>Booting into FreeNAS</h2>
+<h2 id="booting_into_freenas">Booting into FreeNAS</h2>
 
 <ol>
 <li>At the BIOS screen, press the appropriate keystroke to get the boot menu and then selecting the USB device. You can also change the default boot order in the BIOS setup.</li>
@@ -196,31 +172,11 @@
 </li>
 
 <li>
-<p>After FreeNAS boots and loads, you should be presented with this screen (your IP will be different): <pre>
- <code>
-     Console setup
-     -------------
-     .
-     1) Configure Network Interfaces
-     2) Configure Link Aggregation
-     3) Configure VLAN Interface
-     4) Configure Default Route
-     5) Configure Static Routes
-     6) Configure DNS
-     7) Reset WebGUI login credentials
-     8) Reset to factory defaults
-     9) Shell
-     10) Reboot
-     11) Shutdown
-     .
-     You may try the following URLs to access the web user interface:
-     .
-     http://192.168.1.10/
-     .
-     .
-     Enter an option from 1-11:
- </code>
-</pre></p>
+<p>After FreeNAS boots and loads, you should be presented with this screen (your IP will be different):</p>
+
+<h2 id="console_setup">Console setup</h2>
+
+<p>. 1) Configure Network Interfaces 2) Configure Link Aggregation 3) Configure VLAN Interface 4) Configure Default Route 5) Configure Static Routes 6) Configure DNS 7) Reset WebGUI login credentials 8) Reset to factory defaults 9) Shell 10) Reboot 11) Shutdown . You may try the following URLs to access the web user interface: . http://192.168.1.10/ . . Enter an option from 1-11:</p>
 </li>
 
 <li>
@@ -228,7 +184,7 @@
 </li>
 </ol>
 
-<h2 id='setting_up_a_time_machine_volume'>Setting up a Time Machine Volume</h2>
+<h2 id="setting_up_a_time_machine_volume">Setting up a Time Machine Volume</h2>
 
 <ol>
 <li>
@@ -236,15 +192,15 @@
 </li>
 
 <li>
-<p>Add the volume from Storage &gt; Volumes <br /> <br /> <img src='/images/FN_storage_vols.png' border='1' /> <br /> <br /></p>
+<p>Add the volume from Storage &gt; Volumes <br /> <br /> <img border='1' src='/images/FN_storage_vols.png' /> <br /> <br /></p>
 </li>
 
 <li>
-<p>Set the volume permissions, Storage &gt; Volumes &gt; /mnt/TimeMachine0 &gt; Change Permissions. We will set the permissions to <code>nobody</code> for both user and group. The same user, &#8216;nobody&#8217;, will be used when setting up the shared volume. <br /> <br /> <img src='/images/vol_permissions.png' border='1' /> <br /> <br /></p>
+<p>Set the volume permissions, Storage &gt; Volumes &gt; /mnt/TimeMachine0 &gt; Change Permissions. We will set the permissions to <code>nobody</code> for both user and group. The same user, ‘nobody’, will be used when setting up the shared volume. <br /> <br /> <img border='1' src='/images/vol_permissions.png' /> <br /> <br /></p>
 </li>
 
 <li>
-<p>Create an AFP share. Sharing &gt; Apple (AFP) Shares &gt; Add Apple (AFP) Share <br /> <br /> <img src='/images/afp_share_0.png' border='1' /> <br /> <br /></p>
+<p>Create an AFP share. Sharing &gt; Apple (AFP) Shares &gt; Add Apple (AFP) Share <br /> <br /> <img border='1' src='/images/afp_share_0.png' /> <br /> <br /></p>
 </li>
 
 <li>
@@ -274,15 +230,15 @@
 </li>
 </ol>
 
-<h2 id='connecting_to_the_time_machine_share'>Connecting to the Time Machine Share</h2>
+<h2 id="connecting_to_the_time_machine_share">Connecting to the Time Machine Share</h2>
 
 <ol>
 <li>
-<p>From the Finder menu, Go &gt; Connect to Server&#8230; Enter <code>afp://[your free nas ip]</code></p>
+<p>From the Finder menu, Go &gt; Connect to Server… Enter <code>afp://[your free nas ip]</code></p>
 </li>
 
 <li>
-<p>You will be asked for a password, this will be the password set for the &#8216;nobody&#8217; user.</p>
+<p>You will be asked for a password, this will be the password set for the ‘nobody’ user.</p>
 </li>
 
 <li>
@@ -294,7 +250,7 @@
 </li>
 
 <li>
-<p>Reading and writing files to the drive is fine, but I was getting error &#8216;OSStatus error 13&#8217; when trying to select the disk in Time Machine setup.</p>
+<p>Reading and writing files to the drive is fine, but I was getting error ‘OSStatus error 13’ when trying to select the disk in Time Machine setup.</p>
 </li>
 </ol>
     </div>
@@ -329,7 +285,7 @@
       
         <li><a href="/archive.html">Archive</a></li>
       
-        <li class="next disabled"><a>Next &rarr;</a>
+        <li class="next"><a href="/2014/01/02/mac_apache" title="Symbolic Links and Apache on OS X">Next &rarr;</a></li>
       
       </ul>
     </div>
@@ -361,7 +317,7 @@
       </div>
       <hr>
       <footer>
-        <p>&copy; 2013 Bogdan Ciuca
+        <p>&copy; 2014 Bogdan Ciuca
           with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
           and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
         </p>

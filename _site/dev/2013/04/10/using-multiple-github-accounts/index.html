@@ -108,15 +108,15 @@
       <span>10 April 2013</strong>
     </div>
     <div class="content">
-      <h4 id='why_would_you_need_more_than_one_github_account'>Why would you need more than one GitHub account?</h4>
+      <h4 id="why_would_you_need_more_than_one_github_account">Why would you need more than one GitHub account?</h4>
 
 <p>Ideally, having a single GitHub account with contributions to multiple organizations would be the simplest way. As it turns out, my current job came with a separate GitHub account. So now I have two GitHub accounts, one for personal projects and another for work. The problem I was running into was trying to keep my commits tied with the right GitHub ssh key. Luckily, git and ssh are configurable enough to get this sorted out.</p>
 
-<p>Through some simple googling, I found <a href='http://net.tutsplus.com/tutorials/tools-and-tips/how-to-work-with-github-and-multiple-accounts/'>Jeffery Way&#8217;s blog post</a>. The steps I outlined below is what I did to get this setup on my Mac. More details can be found on Jeffery&#8217;s blog.</p>
+<p>Through some simple googling, I found <a href="http://net.tutsplus.com/tutorials/tools-and-tips/how-to-work-with-github-and-multiple-accounts/">Jeffery Way’s blog post</a>. The steps I outlined below is what I did to get this setup on my Mac. More details can be found on Jeffery’s blog.</p>
 
 <p>The following steps assume that you already have an existing key you use with one of your github accounts. For the purpose of this writeup, the default <code>id_rsa</code> key is associated with your personal GitHub account.</p>
 
-<h4 id='creating_and_adding_ssh_keys'>Creating and adding ssh keys</h4>
+<h4 id="creating_and_adding_ssh_keys">Creating and adding ssh keys</h4>
 
 <p>A ssh key will be needed to use with the work GitHub account. In your <code>~/.ssh</code> directory, run the following ssh command: <code>ssh-keygen -t rsa -C &quot;me@mycompany.com&quot;</code></p>
 
@@ -124,64 +124,33 @@
 
 <p>Add the key to ssh: <code>ssh-add ~/.ssh/id_rsa_mycompany</code></p>
 
-<h4 id='setting_up_github_with_your_new_ssh_key'>Setting up GitHub with your new ssh key</h4>
+<h4 id="setting_up_github_with_your_new_ssh_key">Setting up GitHub with your new ssh key</h4>
 
 <p>Now add the new public key to the work GitHub account (this will be under your GitHub account settings). Open the <code>id_rsa_mycompany.pub</code> public key file in a text editor and copy the text. Or just copy directly from the terminal: <code>cat ~/.ssh/id_rsa_mycompany.pub | pbcopy</code></p>
 
-<h4 id='configuring_ssh'>Configuring ssh</h4>
+<h4 id="configuring_ssh">Configuring ssh</h4>
 
 <p>Configure ssh host names to use for work and personal. The config file is in <code>~/.ssh/config</code> or you can create one if needed: <code>touch ~/.ssh/config</code></p>
 
-<p>The first host is the personal account and the second entry is for the work account. You can name the <code>Hostname</code> whatever you like. <pre>
-    <code>
-        Host github.com 
-           Hostname github.com 
-           User git 
-           IdentityFile ~/.ssh/id_rsa
-        Host github-mycompany
-           Hostname github.com
-           User git
-           IdentityFile ~/.ssh/id_rsa_mycompany
-    </code>
-</pre></p>
+<p>The first host is the personal account and the second entry is for the work account. You can name the <code>Hostname</code> whatever you like. Host github.com Hostname github.com User git IdentityFile ~/.ssh/id_rsa Host github-mycompany Hostname github.com User git IdentityFile ~/.ssh/id_rsa_mycompany</p>
 
-<h4 id='configuring_git_repo'>Configuring git repo</h4>
+<h4 id="configuring_git_repo">Configuring git repo</h4>
 
-<p>Configure your git repo settings to use the configured ssh hostnames. The config file can be found in the <code>.git</code> directory of your git repo. <pre>
-    <code>
-        [core]
-           repositoryformatversion = 0
-           filemode = true
-           bare = false
-           logallrefupdates = true
-           ignorecase = true
-        [remote "origin"]
-           fetch = +refs/heads/*:refs/remotes/origin/*
-           url = git@github-mycompany:OrgName/corporate-stuff.git
-        [branch "xdev"]
-           remote = origin
-           merge = refs/heads/xdev
-        [user]
-           email = me@mycompany.com
-    </code>
-</pre></p>
+<p>Configure your git repo settings to use the configured ssh hostnames. The config file can be found in the <code>.git</code> directory of your git repo. [core] repositoryformatversion = 0 filemode = true bare = false logallrefupdates = true ignorecase = true [remote origin] fetch = +refs/heads/<em>:refs/remotes/origin/</em> url = git@github-mycompany:OrgName/corporate-stuff.git [branch xdev] remote = origin merge = refs/heads/xdev [user] email = me@mycompany.com</p>
 
 <p>While you can have global git user preferences set, such as email, I configured my email in the project git config to use my work address.</p>
 
 <p>For my personal repo, I just use my default global user settings and the usual git ssh addresses (i.e. git@github.com). So there is really nothing more to add to your other git config unless you need further customization.</p>
 
-<h4 id='testing_it_out'>Testing it out</h4>
+<h4 id="testing_it_out">Testing it out</h4>
 
 <p>To test that the keys were added ok, you can run the following ssh commands.</p>
-<pre>
-    <code>
-        ssh -T git@github.com
-        Hi bciuca! You've successfully authenticated, but GitHub does not provide shell access.
 
-        ssh -T git@github-mycompany
-        Hi bciuca-mycompany! You've successfully authenticated, but GitHub does not provide shell access.
-    </code>
-</pre>
+<pre><code>ssh -T git@github.com
+Hi bciuca! You&#39;ve successfully authenticated, but GitHub does not provide shell access.
+
+ssh -T git@github-mycompany
+Hi bciuca-mycompany! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</code></pre>
     </div>
 
   
@@ -261,7 +230,7 @@
       </div>
       <hr>
       <footer>
-        <p>&copy; 2013 Bogdan Ciuca
+        <p>&copy; 2014 Bogdan Ciuca
           with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
           and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
         </p>
