@@ -5,8 +5,8 @@
         <description>devbog - Bogdan Ciuca</description>
         <link>http://bciuca.com</link>
         <link>http://bciuca.com</link>
-        <lastBuildDate>2014-01-06T10:28:53-08:00</lastBuildDate>
-        <pubDate>2014-01-06T10:28:53-08:00</pubDate>
+        <lastBuildDate>2014-01-06T11:20:37-08:00</lastBuildDate>
+        <pubDate>2014-01-06T11:20:37-08:00</pubDate>
         <ttl>1800</ttl>
 
 
@@ -16,23 +16,23 @@
 
 &lt;ol&gt;
 &lt;li&gt;
-&lt;p&gt;Create the link &lt;code&gt;sudo ln -s /Users/bciuca/dev/MyTestApp/ /Library/WebServer/Documents/testapp&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Create the link&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sudo ln -s /Users/bciuca/dev/MyTestApp/ /Library/WebServer/Documents/testapp&lt;/code&gt;&lt;/p&gt;
 &lt;/li&gt;
 
 &lt;li&gt;
-&lt;p&gt;Set directory permissions &lt;code&gt;chmod o+x ~/dev/MyTestApp&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
+&lt;p&gt;Set directory permissions&lt;/p&gt;
 
-&lt;li&gt;
-&lt;p&gt;Restart Apache &lt;code&gt;apachectl -k graceful&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;chmod o+x ~/dev/MyTestApp&lt;/code&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
+&lt;h3 id=&quot;background&quot;&gt;Background&lt;/h3&gt;
 
 &lt;p&gt;I have a webapp project that I need to run in a browser locally on my develoment machine. My options to test the webapp is to either set my apache config to point to my development dir, or make a build sctipt to copy and paste the code to a test path in my existing web server root.&lt;/p&gt;
 
-&lt;h3 id=&quot;symbolic_links&quot;&gt;Symbolic Links&lt;/h3&gt;
+&lt;h4 id=&quot;symbolic_links&quot;&gt;Symbolic Links&lt;/h4&gt;
 
 &lt;p&gt;In this example, I am testing everything locally with no need for minification or other build steps before hosting the code. For simplicity, a symbolic link in the web server root will point to my development directory, &lt;code&gt;/Users/bciuca/dev/MyTestApp&lt;/code&gt;.&lt;/p&gt;
 
@@ -44,17 +44,7 @@
 
 &lt;p&gt;&lt;a href=&quot;http://gigaom.com/2011/04/27/how-to-create-and-use-symlinks-on-a-mac/&quot;&gt;Further reading on symbolic and hard links in OS X&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3 id=&quot;file_permissions&quot;&gt;File Permissions&lt;/h3&gt;
-
-&lt;p&gt;To complete the setup, the correct file permissions need to be set in order for the pages to be served.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;chmod o+x ~/dev/MyTestApp&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;restart_apache&quot;&gt;Restart Apache&lt;/h3&gt;
-
-&lt;p&gt;Finally, restart Apache.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;apachectl -k graceful&lt;/code&gt;&lt;/p&gt;</description>
+&lt;p&gt;In order for Apache to serve the files, you must set the correct file permissions listed above in the Procedure step 2.&lt;/p&gt;</description>
                 <link>http://bciuca.com/2014/01/02/mac_apache</link>
                 <guid>http://bciuca.com/2014/01/02/mac_apache</guid>
                 <pubDate>2014-01-02T00:00:00-08:00</pubDate>
