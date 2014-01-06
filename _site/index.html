@@ -103,7 +103,19 @@
 <div class="row-fluid">
   <div class="span12">
     <h1 id="latest_post">Latest Post</h1>
-<hr /><h2><a href='/2014/01/02/mac_apache'>Symbolic Links and Apache on OS X</a></h2><h3 id='creating_symbolic_links'>Creating Symbolic Links</h3><p>I have a webapp project that I need to run in a browser locally on my develoment machine. My options to test the webapp is to either set my apache config to point to my development dir, or make a build sctipt to copy and paste the code to a test path in my existing web server root.</p><p>In this example, I am testing everything locally with no need for minification or other build steps before hosting the code. For simplicity, a symbolic link in the web server root will point to my development directory, <code>/Users/bciuca/dev/MyTestApp</code>.</p><p>The <code>ln -s</code> command will create the symbolic link, given a source and destination path (sudo is needed to write the symlink).</p><p><code>sudo ln -s /Users/bciuca/dev/MyTestApp/ /Library/WebServer/Documents/testapp</code></p><p>So the URL <a href=''>http://localhost/testapp</a> is now serving files from <code>/Users/bciuca/dev/MyTestApp/</code>.</p><p><a href='http://gigaom.com/2011/04/27/how-to-create-and-use-symlinks-on-a-mac/'>Further reading on symbolic and hard links in OS X</a>.</p><h3 id='file_permissions'>File Permissions</h3><p>To complete the setup, the correct file permissions need to be set in order for the pages to be served.</p><p><code>chmod o+x ~/dev</code></p><p><code>chmod o+x ~/dev/MyTestApp</code></p><h3 id='restart_apache'>Restart Apache</h3><p>Finally, restart Apache.</p><p><code>apachectl -k graceful</code></p><hr />
+<hr /><h2><a href='/2014/01/02/mac_apache'>Symbolic Links and Apache on OS X</a></h2><h2 id='procedure'>Procedure</h2><ol>
+<li>
+<p>Create the link <code>sudo ln -s /Users/bciuca/dev/MyTestApp/ /Library/WebServer/Documents/testapp</code></p>
+</li>
+
+<li>
+<p>Set directory permissions <code>chmod o+x ~/dev/MyTestApp</code></p>
+</li>
+
+<li>
+<p>Restart Apache <code>apachectl -k graceful</code></p>
+</li>
+</ol><h2 id='background'>Background</h2><p>I have a webapp project that I need to run in a browser locally on my develoment machine. My options to test the webapp is to either set my apache config to point to my development dir, or make a build sctipt to copy and paste the code to a test path in my existing web server root.</p><h3 id='symbolic_links'>Symbolic Links</h3><p>In this example, I am testing everything locally with no need for minification or other build steps before hosting the code. For simplicity, a symbolic link in the web server root will point to my development directory, <code>/Users/bciuca/dev/MyTestApp</code>.</p><p>The <code>ln -s</code> command will create the symbolic link, given a source and destination path (sudo is needed to write the symlink).</p><p><code>sudo ln -s /Users/bciuca/dev/MyTestApp/ /Library/WebServer/Documents/testapp</code></p><p>So the URL <a href=''>http://localhost/testapp</a> is now serving files from <code>/Users/bciuca/dev/MyTestApp/</code>.</p><p><a href='http://gigaom.com/2011/04/27/how-to-create-and-use-symlinks-on-a-mac/'>Further reading on symbolic and hard links in OS X</a>.</p><h3 id='file_permissions'>File Permissions</h3><p>To complete the setup, the correct file permissions need to be set in order for the pages to be served.</p><p><code>chmod o+x ~/dev/MyTestApp</code></p><h3 id='restart_apache'>Restart Apache</h3><p>Finally, restart Apache.</p><p><code>apachectl -k graceful</code></p><hr />
 <h1 id="older_posts">Older Posts</h1>
 <ul class='posts'>
   

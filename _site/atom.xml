@@ -4,7 +4,7 @@
  <title>devbog</title>
  <link href="http://bciuca.com/" rel="self"/>
  <link href="http://bciuca.com"/>
- <updated>2014-01-02T22:24:41-08:00</updated>
+ <updated>2014-01-06T10:28:53-08:00</updated>
  <id>http://bciuca.com</id>
  <author>
    <name>Bogdan Ciuca</name>
@@ -17,9 +17,27 @@
    <link href="http://bciuca.com/2014/01/02/mac_apache"/>
    <updated>2014-01-02T00:00:00-08:00</updated>
    <id>http://bciuca.com/2014/01/02/mac_apache</id>
-   <content type="html">&lt;h3 id=&quot;creating_symbolic_links&quot;&gt;Creating Symbolic Links&lt;/h3&gt;
+   <content type="html">&lt;h2 id=&quot;procedure&quot;&gt;Procedure&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Create the link &lt;code&gt;sudo ln -s /Users/bciuca/dev/MyTestApp/ /Library/WebServer/Documents/testapp&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;Set directory permissions &lt;code&gt;chmod o+x ~/dev/MyTestApp&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;Restart Apache &lt;code&gt;apachectl -k graceful&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
 
 &lt;p&gt;I have a webapp project that I need to run in a browser locally on my develoment machine. My options to test the webapp is to either set my apache config to point to my development dir, or make a build sctipt to copy and paste the code to a test path in my existing web server root.&lt;/p&gt;
+
+&lt;h3 id=&quot;symbolic_links&quot;&gt;Symbolic Links&lt;/h3&gt;
 
 &lt;p&gt;In this example, I am testing everything locally with no need for minification or other build steps before hosting the code. For simplicity, a symbolic link in the web server root will point to my development directory, &lt;code&gt;/Users/bciuca/dev/MyTestApp&lt;/code&gt;.&lt;/p&gt;
 
@@ -34,8 +52,6 @@
 &lt;h3 id=&quot;file_permissions&quot;&gt;File Permissions&lt;/h3&gt;
 
 &lt;p&gt;To complete the setup, the correct file permissions need to be set in order for the pages to be served.&lt;/p&gt;
-
-&lt;p&gt;&lt;code&gt;chmod o+x ~/dev&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;code&gt;chmod o+x ~/dev/MyTestApp&lt;/code&gt;&lt;/p&gt;
 

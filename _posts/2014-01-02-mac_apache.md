@@ -5,9 +5,26 @@ description: ""
 ---
 {% include JB/setup %}
 
-### Creating Symbolic Links
+## Procedure
+
+1. Create the link
+   `sudo ln -s /Users/bciuca/dev/MyTestApp/ /Library/WebServer/Documents/testapp`
+
+2. Set directory permissions
+   `chmod o+x ~/dev/MyTestApp`
+
+3. Restart Apache
+   `apachectl -k graceful`
+
+
+
+## Background
 
 I have a webapp project that I need to run in a browser locally on my develoment machine. My options to test the webapp is to either set my apache config to point to my development dir, or make a build sctipt to copy and paste the code to a test path in my existing web server root.
+
+
+
+### Symbolic Links
 
 In this example, I am testing everything locally with no need for minification or other build steps before hosting the code. For simplicity, a symbolic link in the web server root will point to my development directory, `/Users/bciuca/dev/MyTestApp`.
 
@@ -24,8 +41,6 @@ So the URL [http://localhost/testapp]() is now serving files from `/Users/bciuca
 ### File Permissions
 
 To complete the setup, the correct file permissions need to be set in order for the pages to be served.
-
-`chmod o+x ~/dev`
 
 `chmod o+x ~/dev/MyTestApp`
 
