@@ -4,7 +4,7 @@
  <title>devbog</title>
  <link href="http://bciuca.com/" rel="self"/>
  <link href="http://bciuca.com"/>
- <updated>2014-01-06T11:20:37-08:00</updated>
+ <updated>2014-01-13T13:17:47-08:00</updated>
  <id>http://bciuca.com</id>
  <author>
    <name>Bogdan Ciuca</name>
@@ -13,11 +13,101 @@
 
  
  <entry>
+   <title>Adding to your PATH in Mac OS X</title>
+   <link href="http://bciuca.com/2014/01/13/mac-paths"/>
+   <updated>2014-01-13T00:00:00-08:00</updated>
+   <id>http://bciuca.com/2014/01/13/mac-paths</id>
+   <content type="html">&lt;h2 id=&quot;tldr&quot;&gt;TL;DR&lt;/h2&gt;
+
+&lt;p&gt;Adding a path to your PATH in Mac OS X (Mavericks as tested here).&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Edit the paths file. &lt;code&gt;sudo vim /etc/paths&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;Add your path, then save the file.&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;Test the path: &lt;code&gt;echo $PATH&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</content>
+ </entry>
+ 
+ <entry>
+   <title>Jekyll Bootstrap</title>
+   <link href="http://bciuca.com/2014/01/13/jekyll"/>
+   <updated>2014-01-13T00:00:00-08:00</updated>
+   <id>http://bciuca.com/2014/01/13/jekyll</id>
+   <content type="html">&lt;h2 id=&quot;tldr&quot;&gt;TL;DR&lt;/h2&gt;
+
+&lt;p&gt;All instructions are based on Mac OS X Mavericks (10.9.1) and assumes you already have Ruby installed. See further reading for more details.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Install Jekyll: &lt;code&gt;gem install jekyll&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;Setup Jekyll-Bootstrap&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;From scratch:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/plusjade/jekyll-bootstrap.git USERNAME.github.com
+cd USERNAME.github.com
+git remote set-url origin git@github.com:USERNAME/USERNAME.github.com.git
+git push origin master&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;From existing Github repo:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/myaccount/jekyll-bootstrap.git
+cd jekyll-bootstrap
+jekyll serve --watch&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+
+&lt;li&gt;
+&lt;p&gt;Test your pages before pushing any changes to Github.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd /mypath/jekyll-bootstrap
+jekyll serve --watch&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;background&quot;&gt;Background&lt;/h2&gt;
+
+&lt;p&gt;This blog is based on Github Pages, which is a Jekyll-Bootstrap generated site. All posts and pages are written in markdown and then compiled to static web pages by jekyll.&lt;/p&gt;
+
+&lt;h2 id=&quot;further_reading&quot;&gt;Further Reading&lt;/h2&gt;
+
+&lt;h3 id=&quot;jekyll_and_github_pages&quot;&gt;Jekyll and Github Pages&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;&quot;&gt;https://help.github.com/articles/using-jekyll-with-pages&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;&quot;&gt;http://jekyllbootstrap.com&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;&quot;&gt;http://andytaylor.me/2012/11/03/installing-ruby-and-jekyll&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;markdown_reference&quot;&gt;Markdown reference&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;&quot;&gt;http://daringfireball.net/projects/markdown/&lt;/a&gt;&lt;/p&gt;</content>
+ </entry>
+ 
+ <entry>
    <title>Symbolic Links and Apache on OS X</title>
    <link href="http://bciuca.com/2014/01/02/mac_apache"/>
    <updated>2014-01-02T00:00:00-08:00</updated>
    <id>http://bciuca.com/2014/01/02/mac_apache</id>
-   <content type="html">&lt;h2 id=&quot;procedure&quot;&gt;Procedure&lt;/h2&gt;
+   <content type="html">&lt;h2 id=&quot;tldr&quot;&gt;TL;DR&lt;/h2&gt;
+
+&lt;p&gt;Create a link to your development environment in your web server path.&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;

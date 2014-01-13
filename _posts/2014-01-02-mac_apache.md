@@ -5,7 +5,9 @@ description: ""
 ---
 {% include JB/setup %}
 
-## Procedure
+## TL;DR
+
+Create a link to your development environment in your web server path. 
 
 1. Create the link
 

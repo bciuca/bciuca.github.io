@@ -8,6 +8,8 @@ http://bciuca.com/rss.xml
 http://bciuca.com/sitemap.txt
 http://bciuca.com/tags.html
 
+http://bciuca.com/2014/01/13/mac-paths
+http://bciuca.com/2014/01/13/jekyll
 http://bciuca.com/2014/01/02/mac_apache
 http://bciuca.com/2013/04/12/freenas-timemachine
 http://bciuca.com/dev/2013/04/10/using-multiple-github-accounts
