@@ -5,7 +5,15 @@ description: ""
 ---
 {% include JB/setup %}
 
-The following steps and script closely mirror the steps outlined in the thread from the Ubiquity Networks [forum](https://community.ubnt.com/t5/EdgeMAX/Adblocking-at-home-using-EdgeMAX/m-p/623239/highlight/true#M17854). These are my notes from the setup of my EdgeRouter Lite (firmware v1.4.0).
+The [Ubiquiti Networks](http://www.ubnt.com/) EdgeRouter Lite is a powerful, Linux based wired router. For under $100 you get a dual-core MIPS64 CPU, hardware accelerated packet processing with encryption/decryption, 512 MB DDR2 RAM, and 2 GB flash storage. It is marketed as a sub-$100 million packet per second router. All that sounds pretty awesome, but the biggest feature I was interested in was the configurability and software features. 
+
+I have played around in DD-WRT on an aging Linsys WRT54G but it always left more to be desired. I was even considering building a Linux based rig as a router for more flexibility and performance enhancements of my home network. After some research, the EdgeRouter Lite seemed like the perfect package -- small, Linux based OS, cheap, and low power consumption.
+
+One of the first things I did was set up [dnsmasq](http://en.wikipedia.org/wiki/Dnsmasq) to block ads. The benefit of doing this at the router level is that you will block ads on all devices connected to your network. The only caveat is that the devices must be configured to point to the router as the default DNS server, which is usually the default of many network connection setups.
+
+### Ad Blocking
+
+The following steps and script closely mirror the steps outlined in the thread from the Ubiquiti Networks [forum](https://community.ubnt.com/t5/EdgeMAX/Adblocking-at-home-using-EdgeMAX/m-p/623239/highlight/true#M17854). These are my notes from the setup of my EdgeRouter Lite (firmware v1.4.0).
 
 You will need to ssh into your router with an admin account or using sudo for most of the commands.
 
