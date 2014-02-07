@@ -5,7 +5,7 @@ description: ""
 ---
 {% include JB/setup %}
 
-The following steps and script closely mirror the steps outlined in the thread from the Ubiquity Networks [forum](https://community.ubnt.com/t5/EdgeMAX/Adblocking-at-home-using-EdgeMAX/m-p/623239/highlight/true#M17854). These are my notes from my setup of my EdgeRouter Lite (firmware v1.4.0).
+The following steps and script closely mirror the steps outlined in the thread from the Ubiquity Networks [forum](https://community.ubnt.com/t5/EdgeMAX/Adblocking-at-home-using-EdgeMAX/m-p/623239/highlight/true#M17854). These are my notes from the setup of my EdgeRouter Lite (firmware v1.4.0).
 
 You will need to ssh into your router with an admin account or using sudo for most of the commands.
 
