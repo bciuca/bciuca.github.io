@@ -5,9 +5,9 @@ description: ""
 ---
 {% include JB/setup %}
 
-The following steps and script are based on a thread from the Ubiquity Networks [forum](https://community.ubnt.com/t5/EdgeMAX/Adblocking-at-home-using-EdgeMAX/m-p/623239/highlight/true#M17854).
+The following steps and script closely mirror the steps outlined in the thread from the Ubiquity Networks [forum](https://community.ubnt.com/t5/EdgeMAX/Adblocking-at-home-using-EdgeMAX/m-p/623239/highlight/true#M17854). These are my notes from my setup of my EdgeRouter Lite (firmware v1.4.0).
 
-The steps outlined below are pretty much identical to the steps outlined in the original thread at the time of this writing. You will need sudo access to run most of the commands outlined.
+You will need to ssh into your router with an admin account or using sudo for most of the commands.
 
 #### 1. The Shell Script
 
@@ -39,7 +39,7 @@ If there are certain sites that you need to allow, you can add the following lin
 
 #### 2. Set File Permissions
 
-Mark the shell script as executable:
+Mark the shell script as executable.
 
     chmod a+x /config/user-data/update-adblock-dnsmasq.sh
 
@@ -49,7 +49,7 @@ Mark the shell script as executable:
 
 #### 4. Test It
 
-Let's see if it works by running the following command:
+Check to see that everything is working. I was not able to install dig, so I used the host command instead.
 
     host measuremap.com localhost
 
@@ -62,15 +62,32 @@ You should see something like this:
 
     measuremap.com has address 0.0.0.0
 
+You can also try to ping a blocked address from a client machine
+
+    ping measuremap.com
+
+Ping should fail.
+
+    PING measuremap.com (0.0.0.0): 56 data bytes
+    ping: sendto: No route to host
+    ping: sendto: No route to host
+    Request timeout for icmp_seq 0
+    ping: sendto: No route to host
+    Request timeout for icmp_seq 1
+    ping: sendto: No route to host
+    Request timeout for icmp_seq 2
+
 **Note: Using a custom DNS server configuration on the client side will bypass the router's DNS forwarder. When checking that adblock is working at the router level you will also need to check the client machine's network configuration for the DNS server entries.**
 
-#### 5. Schedule Ad Server List Update
+#### 5. Automatic Ad Block Updates
 
-Using cron, you can schedule the ad server list to update periodically. Open up the crontab file
+Using cron, you can schedule the ad server list to update periodically. Open up the crontab file to add a rule.
 
     crontab -e
 
-Add a rule to run the update at a specific interval. Cron parameters are `minute hour dayOfMonth month dayOfWeek command`. You can read more about cron [here](http://www.thegeekstuff.com/2009/06/15-practical-crontab-examples/) and [here](http://en.wikipedia.org/wiki/Cron).
+The rule will run the update at a specific interval. Cron parameters are `minute hour dayOfMonth month dayOfWeek command` 
+
+You can read more about cron [here](http://www.thegeekstuff.com/2009/06/15-practical-crontab-examples/) and [here](http://en.wikipedia.org/wiki/Cron).
 
 For example, I want to run the update at 3:00 AM every Sunday:
 
