@@ -31,3 +31,7 @@ To enable password authentication again, using an already open ssh session or th
 2. `commit`
 3. `save`
 4. `exit`
+
+### Further Reading
+
+[Vyatta CLI configure commands (pdf)](http://www.vyatta.org/files/Glendale_BasicCLICommands_v02.pdf)
