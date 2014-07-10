@@ -3,7 +3,7 @@ layout: page
 ---
 {% include JB/setup %}
 
-# Latest Post
+## Latest Post
 
 
 {% assign x = site.posts.first %}
