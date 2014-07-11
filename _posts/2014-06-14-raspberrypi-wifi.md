@@ -14,7 +14,7 @@ Before beginning, make sure your device is updated.
 
 ### Verify USB Device
 
-This guide is based on the [Edimax](http://www.amazon.com/Edimax-EW-7811Un-Wireless-Adapter-Wizard/dp/B003MTTJOY/ref=sr_1_1?ie=UTF8&qid=1402764906&sr=8-1&keywords=edimax) USB wireless adapter. With the Raspberry Pi turned on and booted, plug in the wireless module.
+This guide is based on the [Edimax](http://amzn.to/1qPwB9B) USB wireless adapter. With the Raspberry Pi turned on and booted, plug in the wireless module.
 Check for USB devices using `lsusb`.
 
     pi@raspberrypi:~$ lsusb
