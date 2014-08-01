@@ -41,25 +41,9 @@ The first host is the personal account and the second entry is for the work acco
        IdentityFile ~/.ssh/id_rsa_mycompany
 
 #### Configuring git repo
-Configure your git repo settings to use the configured ssh hostnames. The config file can be found in the `.git` directory of your git repo.
-    [core]
-       repositoryformatversion = 0
-       filemode = true
-       bare = false
-       logallrefupdates = true
-       ignorecase = true
-    [remote "origin"]
-       fetch = +refs/heads/*:refs/remotes/origin/*
-       url = git@github-mycompany:OrgName/corporate-stuff.git
-    [branch "xdev"]
-       remote = origin
-       merge = refs/heads/xdev
-    [user]
-       email = me@mycompany.com
+In the respective git repos, configure the your email address.
 
-While you can have global git user preferences set, such as email, I configured my email in the project git config to use my work address.
-
-For my personal repo, I just use my default global user settings and the usual git ssh addresses (i.e. git@github.com). So there is really nothing more to add to your other git config unless you need further customization.
+    git config user.email "me@mycompany.com"
 
 #### Testing it out
 To test that the keys were added ok, you can run the following ssh commands.
